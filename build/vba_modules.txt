@@ -1,0 +1,939 @@
+'==============================================================================
+' PSI PLANNER - PLANILHA FINANCEIRA CLINICA (.xlsm)
+' Modulos VBA para injecao via win32com.client (VBComponents.Add)
+'
+' INSTRUCOES PARA O BUILDER PYTHON:
+'   - Cada bloco iniciado por "MODULE:" (delimitador de 4 sinais de igual) e um componente VBA.
+'   - Modulos padrao  -> VBComponents.Add(1)  (vbext_ct_StdModule)
+'   - Modulos de classe-> VBComponents.Add(2)  (vbext_ct_ClassModule)
+'   - UserForm         -> VBComponents.Add(3)  (vbext_ct_MSForm)  [ver frmConsulta]
+'   - ThisWorkbook     -> usar VBProject.VBComponents("ThisWorkbook").CodeModule
+'   - Sheet code       -> localizar componente cujo .Properties("Name")="Menu Inicial"
+'                         (nome de codigo do sheet) e escrever no .CodeModule.
+'   Remover linha "Option Explicit" duplicada caso o componente ja a possua.
+'
+' PALETA (HEX -> RGB):
+'   Preto        #000000 = RGB(0,0,0)
+'   Cinza claro  #F4F4F4 = RGB(244,244,244)
+'   Cinza medio  #A6A6A6 = RGB(166,166,166)
+'   Cinza escuro #3B3B3B = RGB(59,59,59)
+'   Vinho eleg.  #5A1E2A = RGB(90,30,42)
+'   Vinho escuro #3A1018 = RGB(58,16,24)
+'   Branco       #FFFFFF = RGB(255,255,255)
+'==============================================================================
+
+
+==== MODULE: mod_Navegacao ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Navegacao - Navegacao entre abas (atribuir a Shapes via OnAction)
+'------------------------------------------------------------------------------
+
+' Ativa a aba Financeiro.
+Sub IrFinanceiro()
+    On Error Resume Next
+    Sheets("Financeiro").Activate
+End Sub
+
+' Ativa a aba Pacientes.
+Sub IrPacientes()
+    On Error Resume Next
+    Sheets("Pacientes").Activate
+End Sub
+
+' Ativa a aba Calendario.
+Sub IrCalendario()
+    On Error Resume Next
+    Sheets("Calendário").Activate
+End Sub
+
+' Ativa a aba Aniversariantes.
+Sub IrAniversariantes()
+    On Error Resume Next
+    Sheets("Aniversariantes").Activate
+End Sub
+
+' Ativa a aba Relatorios.
+Sub IrRelatorios()
+    On Error Resume Next
+    Sheets("Relatórios").Activate
+End Sub
+
+' Ativa a aba Configuracoes.
+Sub IrConfiguracoes()
+    On Error Resume Next
+    Sheets("Configurações").Activate
+End Sub
+
+' Ativa a aba Menu Inicial.
+Sub IrMenu()
+    On Error Resume Next
+    Sheets("Menu Inicial").Activate
+End Sub
+
+
+==== MODULE: mod_Calculos ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Calculos - Recalcula e escreve os KPIs nos named ranges
+' Itera sempre sobre o Range nomeado (nunca posicao fixa). Defensivo a vazios.
+'------------------------------------------------------------------------------
+
+' Converte HEX (6 chars sem #) em valor de cor RGB para uso em VBA.
+Public Function HexToRGB(ByVal hex As String) As Long
+    hex = Replace(hex, "#", "")
+    HexToRGB = RGB(CLng("&H" & Mid$(hex, 1, 2)), _
+                   CLng("&H" & Mid$(hex, 3, 2)), _
+                   CLng("&H" & Mid$(hex, 5, 2)))
+End Function
+
+' Retorna o Range de um named range ou Nothing se nao existir.
+Private Function NR(ByVal nome As String) As Range
+    On Error Resume Next
+    Set NR = ThisWorkbook.Names(nome).RefersToRange
+    On Error GoTo 0
+End Function
+
+' Escreve valor em uma celula nomeada (KPI de celula unica), se existir.
+Private Sub SetKPI(ByVal nome As String, ByVal valor As Variant)
+    Dim r As Range
+    Set r = NR(nome)
+    If Not r Is Nothing Then r.Cells(1, 1).Value = valor
+End Sub
+
+' Chama todos os recalculos de KPI.
+Sub AtualizarKPIs()
+    On Error Resume Next
+    CalcPacientesAtivos
+    CalcReceitaMes
+    CalcValorPendente
+    CalcProxConsulta
+    CalcFaltasMes
+    CalcAniversariantesMes
+    CalcFinanceiroTotais
+End Sub
+
+' KPI: total de pacientes com PAC_Status = "Ativo".
+Sub CalcPacientesAtivos()
+    On Error Resume Next
+    Dim rng As Range, c As Range, n As Long
+    Set rng = NR("PAC_Status")
+    If rng Is Nothing Then Exit Sub
+    For Each c In rng.Cells
+        If Not IsEmpty(c.Value) Then
+            If StrComp(Trim$(CStr(c.Value)), "Ativo", vbTextCompare) = 0 Then n = n + 1
+        End If
+    Next c
+    SetKPI "KPI_PacientesAtivos", n
+End Sub
+
+' KPI: receita do mes corrente (FIN_Status="Pago" no mes/ano atual).
+Sub CalcReceitaMes()
+    On Error Resume Next
+    Dim rData As Range, rStat As Range, rVal As Range
+    Dim i As Long, total As Double, dt As Variant
+    Set rData = NR("FIN_Data"): Set rStat = NR("FIN_Status"): Set rVal = NR("FIN_Valor")
+    If rData Is Nothing Or rStat Is Nothing Or rVal Is Nothing Then Exit Sub
+    For i = 1 To rData.Cells.Count
+        dt = rData.Cells(i, 1).Value
+        If IsDate(dt) Then
+            If Month(dt) = Month(Date) And Year(dt) = Year(Date) Then
+                If StrComp(Trim$(CStr(rStat.Cells(i, 1).Value)), "Pago", vbTextCompare) = 0 Then
+                    If IsNumeric(rVal.Cells(i, 1).Value) Then total = total + rVal.Cells(i, 1).Value
+                End If
+            End If
+        End If
+    Next i
+    SetKPI "KPI_ReceitaMes", total
+End Sub
+
+' KPI: valor pendente (soma de FIN_Valor com FIN_Status="Pendente").
+Sub CalcValorPendente()
+    On Error Resume Next
+    Dim rStat As Range, rVal As Range, i As Long, total As Double
+    Set rStat = NR("FIN_Status"): Set rVal = NR("FIN_Valor")
+    If rStat Is Nothing Or rVal Is Nothing Then Exit Sub
+    For i = 1 To rStat.Cells.Count
+        If StrComp(Trim$(CStr(rStat.Cells(i, 1).Value)), "Pendente", vbTextCompare) = 0 Then
+            If IsNumeric(rVal.Cells(i, 1).Value) Then total = total + rVal.Cells(i, 1).Value
+        End If
+    Next i
+    SetKPI "KPI_ValorPendente", total
+End Sub
+
+' KPI: proxima consulta (menor data futura encontrada em CAL_Grid).
+Sub CalcProxConsulta()
+    On Error Resume Next
+    Dim grid As Range, c As Range, melhor As Date, achou As Boolean
+    Set grid = NR("CAL_Grid")
+    If grid Is Nothing Then Exit Sub
+    For Each c In grid.Cells
+        If IsDate(c.Value) Then
+            If CDate(c.Value) >= Date Then
+                If Not achou Or CDate(c.Value) < melhor Then
+                    melhor = CDate(c.Value): achou = True
+                End If
+            End If
+        End If
+    Next c
+    If achou Then SetKPI "KPI_ProxConsulta", melhor Else SetKPI "KPI_ProxConsulta", "-"
+End Sub
+
+' KPI: faltas no mes corrente (CAL_Grid contendo texto "Faltou" via data associada).
+Sub CalcFaltasMes()
+    On Error Resume Next
+    Dim grid As Range, c As Range, n As Long
+    Set grid = NR("CAL_Grid")
+    If grid Is Nothing Then Exit Sub
+    For Each c In grid.Cells
+        If Not IsEmpty(c.Value) Then
+            If InStr(1, CStr(c.Value), "Faltou", vbTextCompare) > 0 Then n = n + 1
+        End If
+    Next c
+    SetKPI "KPI_FaltasMes", n
+End Sub
+
+' KPI: aniversariantes do mes (ANIV_Nasc cujo Month = mes atual).
+Sub CalcAniversariantesMes()
+    On Error Resume Next
+    Dim rng As Range, c As Range, n As Long
+    Set rng = NR("ANIV_Nasc")
+    If rng Is Nothing Then Exit Sub
+    For Each c In rng.Cells
+        If IsDate(c.Value) Then
+            If Month(c.Value) = Month(Date) Then n = n + 1
+        End If
+    Next c
+    SetKPI "KPI_AniversariantesMes", n
+    SetKPI "MEI_Indicador_dummy", n  ' no-op se nao existir; mantem robustez
+End Sub
+
+' Totais financeiros: recebido, pendente, lucro liquido, inadimplencia, faturamento anual.
+Sub CalcFinanceiroTotais()
+    On Error Resume Next
+    Dim rStat As Range, rVal As Range, rData As Range, i As Long
+    Dim recebido As Double, pendente As Double, despesas As Double, fatAnual As Double
+    Set rStat = NR("FIN_Status"): Set rVal = NR("FIN_Valor"): Set rData = NR("FIN_Data")
+    If Not rStat Is Nothing And Not rVal Is Nothing Then
+        For i = 1 To rStat.Cells.Count
+            If IsNumeric(rVal.Cells(i, 1).Value) Then
+                Select Case StrComp(Trim$(CStr(rStat.Cells(i, 1).Value)), "Pago", vbTextCompare)
+                    Case 0: recebido = recebido + rVal.Cells(i, 1).Value
+                End Select
+                If StrComp(Trim$(CStr(rStat.Cells(i, 1).Value)), "Pendente", vbTextCompare) = 0 Then
+                    pendente = pendente + rVal.Cells(i, 1).Value
+                End If
+                ' faturamento anual acumulado = soma do que foi pago no ano corrente
+                If Not rData Is Nothing Then
+                    If IsDate(rData.Cells(i, 1).Value) Then
+                        If Year(rData.Cells(i, 1).Value) = Year(Date) _
+                           And StrComp(Trim$(CStr(rStat.Cells(i, 1).Value)), "Pago", vbTextCompare) = 0 Then
+                            fatAnual = fatAnual + rVal.Cells(i, 1).Value
+                        End If
+                    End If
+                End If
+            End If
+        Next i
+    End If
+    ' despesas
+    Dim rDespVal As Range
+    Set rDespVal = NR("DESP_Valor")
+    If Not rDespVal Is Nothing Then
+        Dim c As Range
+        For Each c In rDespVal.Cells
+            If IsNumeric(c.Value) And Not IsEmpty(c.Value) Then despesas = despesas + c.Value
+        Next c
+    End If
+
+    SetKPI "FIN_TotalRecebido", recebido
+    SetKPI "FIN_TotalPendente", pendente
+    SetKPI "FIN_LucroLiquido", recebido - despesas
+    ' inadimplencia: % pendente sobre (recebido+pendente)
+    If (recebido + pendente) > 0 Then
+        SetKPI "FIN_Inadimplencia", pendente / (recebido + pendente)
+    Else
+        SetKPI "FIN_Inadimplencia", 0
+    End If
+    SetKPI "MEI_Faturamento", fatAnual
+End Sub
+
+
+==== MODULE: mod_AlertaMEI ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_AlertaMEI - Alerta visual de proximidade do teto MEI (R$ 81.000/ano)
+'------------------------------------------------------------------------------
+
+' Le MEI_Faturamento e formata MEI_Indicador (fundo/fonte/texto) por faixa.
+Sub AtualizarAlertaMEI()
+    On Error Resume Next
+    Const LIMITE As Double = 81000#
+    Const FAIXA70 As Double = 56700#   ' 70%
+    Const FAIXA90 As Double = 72900#   ' 90%
+    Dim rFat As Range, rInd As Range, fat As Double
+
+    Set rFat = ThisWorkbook.Names("MEI_Faturamento").RefersToRange
+    Set rInd = ThisWorkbook.Names("MEI_Indicador").RefersToRange
+    If rFat Is Nothing Or rInd Is Nothing Then Exit Sub
+    If IsNumeric(rFat.Cells(1, 1).Value) Then fat = rFat.Cells(1, 1).Value
+
+    With rInd.Cells(1, 1)
+        If fat >= FAIXA90 Then
+            .Interior.Color = RGB(0, 0, 0)          ' preto
+            .Font.Color = RGB(255, 255, 255)        ' branco
+            .Value = "Critico: 90% do limite MEI"
+        ElseIf fat >= FAIXA70 Then
+            .Interior.Color = RGB(59, 59, 59)       ' cinza escuro
+            .Font.Color = RGB(255, 255, 255)        ' branco
+            .Value = "Atencao: 70% do limite MEI"
+        Else
+            .Interior.Color = RGB(255, 255, 255)    ' branco
+            .Font.Color = RGB(0, 0, 0)              ' preto
+            .Value = "Dentro do limite MEI"
+        End If
+        .Font.Bold = True
+    End With
+End Sub
+
+
+==== MODULE: mod_Idade ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Idade - Preenche colunas de idade via formula DATEDIF
+' NOTA: DATEDIF aceita ; ou , como separador conforme o separador de lista
+'       regional do Windows (pt-BR usa ; ; en-US usa ,). Detectamos abaixo.
+'------------------------------------------------------------------------------
+
+' Retorna o separador de lista regional (";" ou ",").
+Private Function SepLista() As String
+    On Error Resume Next
+    SepLista = Application.International(xlListSeparator)
+    If Len(SepLista) = 0 Then SepLista = ";"
+End Function
+
+' Escreve =DATEDIF(nasc;TODAY();"Y") em PAC_Idade e ANIV_Idade (linha a linha).
+Sub AtualizarIdades()
+    On Error Resume Next
+    PreencherIdade "PAC_Nasc", "PAC_Idade"
+    PreencherIdade "ANIV_Nasc", "ANIV_Idade"
+End Sub
+
+' Itera as linhas: usa o endereco da celula de nascimento na mesma linha.
+Private Sub PreencherIdade(ByVal nomeNasc As String, ByVal nomeIdade As String)
+    On Error Resume Next
+    Dim rNasc As Range, rIdade As Range, i As Long, sep As String, addr As String
+    Set rNasc = ThisWorkbook.Names(nomeNasc).RefersToRange
+    Set rIdade = ThisWorkbook.Names(nomeIdade).RefersToRange
+    If rNasc Is Nothing Or rIdade Is Nothing Then Exit Sub
+    sep = SepLista()
+    Dim total As Long
+    total = Application.WorksheetFunction.Min(rNasc.Cells.Count, rIdade.Cells.Count)
+    For i = 1 To total
+        If IsDate(rNasc.Cells(i, 1).Value) Then
+            addr = rNasc.Cells(i, 1).Address(False, False)
+            rIdade.Cells(i, 1).Formula = "=DATEDIF(" & addr & sep & "TODAY()" & sep & """Y"")"
+        Else
+            rIdade.Cells(i, 1).ClearContents
+        End If
+    Next i
+End Sub
+
+
+==== MODULE: mod_Avisos ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Avisos - Preenche os blocos AVISO_* do Menu Inicial com strings resumo
+'------------------------------------------------------------------------------
+
+Private Function NRA(ByVal nome As String) As Range
+    On Error Resume Next
+    Set NRA = ThisWorkbook.Names(nome).RefersToRange
+End Function
+
+Private Sub SetAviso(ByVal nome As String, ByVal txt As String)
+    Dim r As Range
+    Set r = NRA(nome)
+    If Not r Is Nothing Then r.Cells(1, 1).Value = txt
+End Sub
+
+' Atualiza todos os avisos do painel inicial.
+Sub AtualizarAvisos()
+    On Error Resume Next
+    AvisoSemSessao
+    AvisoMEI
+    AvisoPendentes
+    AvisoAniversariantes
+End Sub
+
+' Pacientes sem sessao ha mais de 30 dias (PAC_UltimaSessao < hoje-30).
+Sub AvisoSemSessao()
+    On Error Resume Next
+    Dim rNome As Range, rUlt As Range, i As Long, n As Long, primeiro As String
+    Set rNome = NRA("PAC_Nome"): Set rUlt = NRA("PAC_UltimaSessao")
+    If rUlt Is Nothing Then Exit Sub
+    For i = 1 To rUlt.Cells.Count
+        If IsDate(rUlt.Cells(i, 1).Value) Then
+            If CDate(rUlt.Cells(i, 1).Value) < (Date - 30) Then
+                n = n + 1
+                If n = 1 And Not rNome Is Nothing Then primeiro = CStr(rNome.Cells(i, 1).Value)
+            End If
+        End If
+    Next i
+    If n = 0 Then
+        SetAviso "AVISO_SemSessao", "Nenhum paciente sem sessao ha 30+ dias."
+    ElseIf n = 1 Then
+        SetAviso "AVISO_SemSessao", "1 paciente sem sessao ha 30+ dias: " & primeiro
+    Else
+        SetAviso "AVISO_SemSessao", n & " pacientes sem sessao ha 30+ dias (ex.: " & primeiro & ")"
+    End If
+End Sub
+
+' Reusa logica do teto MEI para texto de aviso.
+Sub AvisoMEI()
+    On Error Resume Next
+    Dim rFat As Range, fat As Double
+    Set rFat = NRA("MEI_Faturamento")
+    If Not rFat Is Nothing Then If IsNumeric(rFat.Cells(1, 1).Value) Then fat = rFat.Cells(1, 1).Value
+    If fat >= 72900# Then
+        SetAviso "AVISO_MEI", "CRITICO: faturamento em " & Format(fat, "R$ #,##0") & " (90% do teto MEI)."
+    ElseIf fat >= 56700# Then
+        SetAviso "AVISO_MEI", "Atencao: faturamento em " & Format(fat, "R$ #,##0") & " (70% do teto MEI)."
+    Else
+        SetAviso "AVISO_MEI", "Faturamento anual: " & Format(fat, "R$ #,##0") & " - dentro do limite MEI."
+    End If
+End Sub
+
+' Consultas pendentes de pagamento (FIN_Status="Pendente").
+Sub AvisoPendentes()
+    On Error Resume Next
+    Dim rStat As Range, rVal As Range, i As Long, n As Long, total As Double
+    Set rStat = NRA("FIN_Status"): Set rVal = NRA("FIN_Valor")
+    If rStat Is Nothing Then Exit Sub
+    For i = 1 To rStat.Cells.Count
+        If StrComp(Trim$(CStr(rStat.Cells(i, 1).Value)), "Pendente", vbTextCompare) = 0 Then
+            n = n + 1
+            If Not rVal Is Nothing Then If IsNumeric(rVal.Cells(i, 1).Value) Then total = total + rVal.Cells(i, 1).Value
+        End If
+    Next i
+    If n = 0 Then
+        SetAviso "AVISO_Pendentes", "Sem pagamentos pendentes."
+    Else
+        SetAviso "AVISO_Pendentes", n & " pagamento(s) pendente(s) - " & Format(total, "R$ #,##0.00")
+    End If
+End Sub
+
+' Aniversariantes nos proximos 7 dias (dia/mes de ANIV_Nasc).
+Sub AvisoAniversariantes()
+    On Error Resume Next
+    Dim rNasc As Range, rNome As Range, i As Long, n As Long, lista As String
+    Dim d As Date, aniv As Date, j As Long
+    Set rNasc = NRA("ANIV_Nasc"): Set rNome = NRA("ANIV_Nome")
+    If rNasc Is Nothing Then Exit Sub
+    For i = 1 To rNasc.Cells.Count
+        If IsDate(rNasc.Cells(i, 1).Value) Then
+            d = CDate(rNasc.Cells(i, 1).Value)
+            For j = 0 To 6
+                aniv = DateSerial(Year(Date + j), Month(d), Day(d))
+                If aniv = (Date + j) Then
+                    n = n + 1
+                    If Not rNome Is Nothing Then
+                        If Len(lista) > 0 Then lista = lista & ", "
+                        lista = lista & CStr(rNome.Cells(i, 1).Value)
+                    End If
+                    Exit For
+                End If
+            Next j
+        End If
+    Next i
+    If n = 0 Then
+        SetAviso "AVISO_Aniversariantes", "Nenhum aniversariante nos proximos 7 dias."
+    Else
+        SetAviso "AVISO_Aniversariantes", n & " aniversariante(s) esta semana: " & lista
+    End If
+End Sub
+
+
+==== MODULE: mod_Consulta ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Consulta - Abre o UserForm de cadastro de consulta
+'------------------------------------------------------------------------------
+
+' Exibe o formulario de nova consulta.
+Sub AbrirFormConsulta()
+    On Error Resume Next
+    frmConsulta.Show
+End Sub
+
+' Acrescenta uma linha de agenda no Calendario (chamada pelo form ao salvar).
+' Grava em uma area de "lista" abaixo da grade; mantem robustez se vazio.
+Public Sub RegistrarConsulta(ByVal paciente As String, ByVal dataStr As String, _
+                             ByVal hora As String, ByVal tipo As String, ByVal status As String)
+    On Error Resume Next
+    Dim ws As Worksheet, lin As Long
+    Set ws = Sheets("Calendário")
+    If ws Is Nothing Then Exit Sub
+    ' procura primeira linha livre na coluna A a partir da linha 100 (area de log de agenda)
+    lin = 100
+    Do While Not IsEmpty(ws.Cells(lin, 1).Value)
+        lin = lin + 1
+    Loop
+    ws.Cells(lin, 1).Value = IIf(IsDate(dataStr), CDate(dataStr), dataStr)
+    ws.Cells(lin, 2).Value = hora
+    ws.Cells(lin, 3).Value = paciente
+    ws.Cells(lin, 4).Value = tipo
+    ws.Cells(lin, 5).Value = status
+End Sub
+
+
+==== MODULE: frmConsulta ====
+'==============================================================================
+' COMPONENTE: frmConsulta  (UserForm)  -> VBComponents.Add(3) / vbext_ct_MSForm
+'------------------------------------------------------------------------------
+' ESPECIFICACAO DOS CONTROLES (para o builder Python recriar via
+' .Designer.Controls.Add). Coordenadas em pontos. Form ~ 300 x 320.
+'
+' Form:
+'   Name="frmConsulta"  Caption="Nova Consulta"  Width=300  Height=320
+'
+' Labels (Forms.Label.1):
+'   lblPaciente  Caption="Paciente:"  Left=12  Top=12  Width=80  Height=18
+'   lblData      Caption="Data:"      Left=12  Top=42  Width=80  Height=18
+'   lblHora      Caption="Hora:"      Left=12  Top=72  Width=80  Height=18
+'   lblTipo      Caption="Tipo:"      Left=12  Top=102 Width=80  Height=18
+'   lblStatus    Caption="Status:"    Left=12  Top=132 Width=80  Height=18
+'
+' Controles de entrada:
+'   cboPaciente  (Forms.ComboBox.1)  Left=100 Top=10  Width=170 Height=18
+'   txtData      (Forms.TextBox.1)   Left=100 Top=40  Width=170 Height=18   '(dd/mm/aaaa)
+'   txtHora      (Forms.TextBox.1)   Left=100 Top=70  Width=170 Height=18   '(hh:mm)
+'   cboTipo      (Forms.ComboBox.1)  Left=100 Top=100 Width=170 Height=18
+'                  List: "Presencial","Online"
+'   cboStatus    (Forms.ComboBox.1)  Left=100 Top=130 Width=170 Height=18
+'                  List: "Confirmado","Remarcado","Faltou","Cancelado","Realizado"
+'
+' Botoes (Forms.CommandButton.1):
+'   btnSalvar    Caption="Salvar"    Left=100 Top=170 Width=80 Height=26
+'   btnCancelar  Caption="Cancelar"  Left=190 Top=170 Width=80 Height=26
+'
+' OBS: O code-behind abaixo deve ser escrito no CodeModule do componente
+'      frmConsulta APOS criar os controles. NAO inserir "Option Explicit"
+'      duplicado caso o builder ja o adicione.
+'==============================================================================
+Option Explicit
+
+' Inicializa combos ao abrir o form.
+Private Sub UserForm_Initialize()
+    On Error Resume Next
+    Dim rNome As Range, c As Range
+    ' Tipo
+    cboTipo.Clear
+    cboTipo.AddItem "Presencial"
+    cboTipo.AddItem "Online"
+    ' Status
+    cboStatus.Clear
+    cboStatus.AddItem "Confirmado"
+    cboStatus.AddItem "Remarcado"
+    cboStatus.AddItem "Faltou"
+    cboStatus.AddItem "Cancelado"
+    cboStatus.AddItem "Realizado"
+    ' Pacientes (a partir do named range PAC_Nome)
+    cboPaciente.Clear
+    Set rNome = ThisWorkbook.Names("PAC_Nome").RefersToRange
+    If Not rNome Is Nothing Then
+        For Each c In rNome.Cells
+            If Not IsEmpty(c.Value) Then cboPaciente.AddItem CStr(c.Value)
+        Next c
+    End If
+    txtData.Value = Format(Date, "dd/mm/yyyy")
+    txtHora.Value = "08:00"
+End Sub
+
+' Salva: valida campos minimos e registra a consulta na agenda.
+Private Sub btnSalvar_Click()
+    On Error Resume Next
+    If Len(Trim$(cboPaciente.Value)) = 0 Then
+        MsgBox "Selecione um paciente.", vbExclamation, "Nova Consulta": Exit Sub
+    End If
+    If Not IsDate(txtData.Value) Then
+        MsgBox "Data invalida (use dd/mm/aaaa).", vbExclamation, "Nova Consulta": Exit Sub
+    End If
+    mod_Consulta.RegistrarConsulta CStr(cboPaciente.Value), CStr(txtData.Value), _
+                                   CStr(txtHora.Value), CStr(cboTipo.Value), CStr(cboStatus.Value)
+    MsgBox "Consulta registrada.", vbInformation, "Nova Consulta"
+    Unload Me
+End Sub
+
+' Cancela e fecha o form.
+Private Sub btnCancelar_Click()
+    Unload Me
+End Sub
+
+
+==== MODULE: mod_Recibo ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Recibo - Gera recibo a partir da linha selecionada em Financeiro
+'------------------------------------------------------------------------------
+
+' Monta a aba "Recibo" com base na linha ativa da aba Financeiro.
+Sub GerarRecibo()
+    On Error Resume Next
+    Dim wsFin As Worksheet, wsRec As Worksheet
+    Set wsFin = Sheets("Financeiro")
+    If wsFin Is Nothing Then Exit Sub
+    If ActiveSheet.Name <> "Financeiro" Then
+        MsgBox "Selecione uma linha na aba Financeiro antes de gerar o recibo.", vbExclamation
+        Exit Sub
+    End If
+
+    ' Le valores da linha ativa pelos named ranges (mesmo offset de linha)
+    Dim linhaSel As Long, baseRow As Long, idx As Long
+    Dim rData As Range, rPac As Range, rVal As Range, rForma As Range, rObs As Range
+    Set rData = ThisWorkbook.Names("FIN_Data").RefersToRange
+    Set rPac = ThisWorkbook.Names("FIN_Paciente").RefersToRange
+    Set rVal = ThisWorkbook.Names("FIN_Valor").RefersToRange
+    Set rForma = ThisWorkbook.Names("FIN_Forma").RefersToRange
+    Set rObs = ThisWorkbook.Names("FIN_Obs").RefersToRange
+    If rData Is Nothing Or rPac Is Nothing Or rVal Is Nothing Then Exit Sub
+
+    linhaSel = ActiveCell.Row
+    baseRow = rData.Cells(1, 1).Row
+    idx = linhaSel - baseRow + 1
+    If idx < 1 Or idx > rData.Cells.Count Then
+        MsgBox "Clique em uma linha de lancamento valida.", vbExclamation: Exit Sub
+    End If
+
+    Dim sPac As String, sData As String, sVal As String, sForma As String, sObs As String
+    sPac = CStr(rPac.Cells(idx, 1).Value)
+    sData = Format(rData.Cells(idx, 1).Value, "dd/mm/yyyy")
+    sVal = Format(rVal.Cells(idx, 1).Value, "R$ #,##0.00")
+    If Not rForma Is Nothing Then sForma = CStr(rForma.Cells(idx, 1).Value)
+    If Not rObs Is Nothing Then sObs = CStr(rObs.Cells(idx, 1).Value)
+
+    ' Cria/limpa a aba Recibo
+    Application.DisplayAlerts = False
+    Set wsRec = Nothing
+    Set wsRec = Sheets("Recibo")
+    If wsRec Is Nothing Then
+        Set wsRec = Sheets.Add(After:=Sheets(Sheets.Count))
+        wsRec.Name = "Recibo"
+    Else
+        wsRec.Cells.Clear
+        Dim shp As Shape
+        For Each shp In wsRec.Shapes: shp.Delete: Next shp
+    End If
+    Application.DisplayAlerts = True
+
+    ' Cabecalho do recibo: usa o nome da clinica configurado (CFG_NomeClinica)
+    Dim nomeClinica As String
+    nomeClinica = ""
+    nomeClinica = CStr(ThisWorkbook.Names("CFG_NomeClinica").RefersToRange.Value)
+    If Len(Trim$(nomeClinica)) = 0 Then nomeClinica = "Psi Planner"
+
+    ' Layout do recibo
+    With wsRec
+        .Columns("A").ColumnWidth = 18
+        .Columns("B").ColumnWidth = 45
+        With .Range("A1:B1")
+            .Merge: .Value = nomeClinica
+            .Font.Size = 16: .Font.Bold = True
+            .Font.Color = RGB(255, 255, 255)
+            .Interior.Color = RGB(90, 30, 42)   ' vinho elegante
+            .HorizontalAlignment = xlCenter
+            .RowHeight = 28
+        End With
+        .Range("A3").Value = "RECIBO DE PAGAMENTO": .Range("A3").Font.Bold = True
+        .Range("A5").Value = "Paciente:":   .Range("B5").Value = sPac
+        .Range("A6").Value = "Data:":       .Range("B6").Value = sData
+        .Range("A7").Value = "Valor:":      .Range("B7").Value = sVal
+        .Range("A8").Value = "Forma:":      .Range("B8").Value = sForma
+        .Range("A9").Value = "Descricao:":  .Range("B9").Value = sObs
+        .Range("A5:A9").Font.Bold = True
+        .Range("A11").Value = "Recebi a importancia acima descrita, referente a servicos de psicologia."
+        .Range("A14").Value = "_____________________________"
+        .Range("A15").Value = "Assinatura / CRP"
+        .Range("A5:B15").Font.Color = RGB(59, 59, 59)
+    End With
+
+    ' Botao Imprimir
+    Dim btn As Shape
+    Set btn = wsRec.Shapes.AddShape(msoShapeRoundedRectangle, 320, 10, 90, 28)
+    btn.Name = "btnImprimirRecibo"
+    btn.TextFrame2.TextRange.Text = "Imprimir"
+    btn.Fill.ForeColor.RGB = RGB(58, 16, 24)   ' vinho escuro
+    btn.TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(255, 255, 255)
+    btn.OnAction = "ImprimirRecibo"
+
+    wsRec.Activate
+    wsRec.Range("A1").Select
+End Sub
+
+' Imprime (pre-visualiza) a aba Recibo.
+Sub ImprimirRecibo()
+    On Error Resume Next
+    Dim wsRec As Worksheet
+    Set wsRec = Sheets("Recibo")
+    If wsRec Is Nothing Then Exit Sub
+    wsRec.PrintPreview   ' troque por wsRec.PrintOut para impressao direta
+End Sub
+
+
+==== MODULE: mod_Filtros ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Filtros - AutoFilter sobre os ranges nomeados (usa .CurrentRegion)
+'------------------------------------------------------------------------------
+
+' Retorna o range nomeado expandido com cabecalho para AutoFilter.
+Private Function AreaFiltro(ByVal coluna As String) As Range
+    On Error Resume Next
+    Dim r As Range
+    Set r = ThisWorkbook.Names(coluna).RefersToRange
+    If r Is Nothing Then Exit Function
+    Set AreaFiltro = r.CurrentRegion
+End Function
+
+' Aplica AutoFilter na coluna pelo valor informado (campo = indice relativo).
+Private Sub AplicarFiltro(ByVal nomeColuna As String, ByVal criterio As String)
+    On Error Resume Next
+    Dim col As Range, area As Range, campo As Long
+    Set col = ThisWorkbook.Names(nomeColuna).RefersToRange
+    If col Is Nothing Then Exit Sub
+    Set area = col.CurrentRegion
+    If area Is Nothing Then Exit Sub
+    campo = col.Column - area.Columns(1).Column + 1
+    area.Worksheet.Activate
+    If area.Worksheet.AutoFilterMode Then area.AutoFilter
+    area.AutoFilter Field:=campo, Criteria1:=criterio
+End Sub
+
+' Filtra Financeiro por status (pede valor ao usuario).
+Sub FiltrarPorStatus()
+    On Error Resume Next
+    Dim v As String
+    v = InputBox("Status (Pago / Pendente):", "Filtrar por Status", "Pendente")
+    If Len(v) = 0 Then Exit Sub
+    AplicarFiltro "FIN_Status", v
+End Sub
+
+' Filtra Pacientes por convenio.
+Sub FiltrarPorConvenio()
+    On Error Resume Next
+    Dim v As String
+    v = InputBox("Convenio:", "Filtrar por Convenio", "Particular")
+    If Len(v) = 0 Then Exit Sub
+    AplicarFiltro "PAC_Convenio", v
+End Sub
+
+' Filtra Aniversariantes pelo mes de nascimento (1-12).
+Sub FiltrarPorMesAniversario()
+    On Error Resume Next
+    Dim col As Range, area As Range, campo As Long, mes As Integer
+    mes = Val(InputBox("Mes (1-12):", "Filtrar Aniversariantes", CStr(Month(Date))))
+    If mes < 1 Or mes > 12 Then Exit Sub
+    Set col = ThisWorkbook.Names("ANIV_Nasc").RefersToRange
+    If col Is Nothing Then Exit Sub
+    Set area = col.CurrentRegion
+    campo = col.Column - area.Columns(1).Column + 1
+    area.Worksheet.Activate
+    If area.Worksheet.AutoFilterMode Then area.AutoFilter
+    ' filtro dinamico por mes da data
+    area.AutoFilter Field:=campo, Operator:=xlFilterValues, _
+                    Criteria2:=Array(mes, GerarDatasDoMes(mes))
+End Sub
+
+' Helper: gera padrao de data agrupada por mes (compatibilidade xlFilterValues).
+Private Function GerarDatasDoMes(ByVal mes As Integer) As String
+    GerarDatasDoMes = Format(DateSerial(Year(Date), mes, 1), "m")
+End Function
+
+' Filtra Pacientes por frequencia (saldo de sessoes <= 0, ex.: contrato encerrado).
+Sub FiltrarPorFrequencia()
+    On Error Resume Next
+    Dim col As Range, area As Range, campo As Long, v As String
+    v = InputBox("Saldo de sessoes - criterio (ex.: <=0 ou >0):", "Filtrar por Frequencia", "<=0")
+    If Len(v) = 0 Then Exit Sub
+    Set col = ThisWorkbook.Names("PAC_Saldo").RefersToRange
+    If col Is Nothing Then Exit Sub
+    Set area = col.CurrentRegion
+    campo = col.Column - area.Columns(1).Column + 1
+    area.Worksheet.Activate
+    If area.Worksheet.AutoFilterMode Then area.AutoFilter
+    area.AutoFilter Field:=campo, Criteria1:=v
+End Sub
+
+' Filtra Financeiro por faixa de faturamento (valor >= informado).
+Sub FiltrarPorFaturamento()
+    On Error Resume Next
+    Dim col As Range, area As Range, campo As Long, v As String
+    v = InputBox("Valor minimo do lancamento:", "Filtrar por Faturamento", "100")
+    If Len(v) = 0 Then Exit Sub
+    Set col = ThisWorkbook.Names("FIN_Valor").RefersToRange
+    If col Is Nothing Then Exit Sub
+    Set area = col.CurrentRegion
+    campo = col.Column - area.Columns(1).Column + 1
+    area.Worksheet.Activate
+    If area.Worksheet.AutoFilterMode Then area.AutoFilter
+    area.AutoFilter Field:=campo, Criteria1:=">=" & v
+End Sub
+
+' Remove todos os filtros das abas com dados.
+Sub LimparFiltros()
+    On Error Resume Next
+    Dim ws As Worksheet
+    For Each ws In ThisWorkbook.Worksheets
+        If ws.AutoFilterMode Then ws.AutoFilterMode = False
+        If ws.FilterMode Then ws.ShowAllData
+    Next ws
+End Sub
+
+
+==== MODULE: mod_Export ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Export - Exporta a aba ativa como PDF na pasta PsiPlanner com timestamp
+'------------------------------------------------------------------------------
+
+' Exporta ActiveSheet para PDF; trata caso o arquivo esteja aberto/bloqueado.
+Sub ExportarRelatorioPDF()
+    Dim caminho As String, nomeArq As String, destino As String
+    ' pasta base do .xlsm + subpasta PsiPlanner\export
+    ' exporta para a subpasta "Exportados" ao lado do proprio arquivo
+    caminho = ThisWorkbook.Path
+    If Len(caminho) = 0 Then caminho = Environ$("USERPROFILE")
+    On Error Resume Next
+    If Dir(caminho & "\Exportados", vbDirectory) = "" Then MkDir caminho & "\Exportados"
+    On Error GoTo 0
+
+    nomeArq = "Relatorio_" & Replace(ActiveSheet.Name, " ", "_") & "_" & _
+              Format(Now, "yyyymmdd_hhnnss") & ".pdf"
+    destino = caminho & "\Exportados\" & nomeArq
+
+    On Error GoTo Falha
+    ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, Filename:=destino, _
+        Quality:=xlQualityStandard, IncludeDocProperties:=True, _
+        IgnorePrintAreas:=False, OpenAfterPublish:=False
+    MsgBox "PDF exportado:" & vbCrLf & destino, vbInformation, "Exportar PDF"
+    Exit Sub
+Falha:
+    MsgBox "Falha ao exportar PDF. Verifique se o arquivo nao esta aberto e tente novamente." _
+        & vbCrLf & "Erro: " & Err.Description, vbExclamation, "Exportar PDF"
+End Sub
+
+
+==== MODULE: mod_Hover ====
+Option Explicit
+'------------------------------------------------------------------------------
+' mod_Hover - Efeito hover discreto em botoes.
+'
+' ABORDAGEM: O Excel NAO dispara MouseMove para AutoShapes. Para ter hover
+' real usamos botoes ActiveX (MSForms.CommandButton) embutidos na planilha,
+' que possuem o evento _MouseMove. Ao entrar com o mouse, troca-se o BackColor
+' para vinho escuro RGB(58,16,24); o estado normal e cinza claro RGB(244,244,244).
+' Como o MouseMove nao dispara ao SAIR do controle, o "reset" e feito por um
+' MouseMove na propria planilha (area fora dos botoes) ou no Worksheet_
+' SelectionChange, que restaura a cor padrao de todos os botoes ActiveX.
+'
+' O code-behind dos eventos _MouseMove deve ficar no CodeModule da PLANILHA
+' que hospeda os botoes ActiveX (um Private Sub por botao). Abaixo segue:
+'   (a) helpers reutilizaveis neste modulo padrao;
+'   (b) modelo de evento por botao (copiar para o sheet code).
+'
+' FALLBACK (1 linha): se ActiveX MouseMove for inviavel no ambiente alvo,
+' usar realce-ao-clicar via ToggleRealce abaixo, atribuido ao OnAction da Shape.
+' LIMITACAO: o fallback nao restaura sozinho ao sair; o realce permanece ate
+' clicar em outro botao (chamar ResetRealceShapes limpa todos).
+'------------------------------------------------------------------------------
+
+Public Const COR_HOVER As Long = 3805242      ' RGB(58,16,24)  vinho escuro
+Public Const COR_NORMAL As Long = 16053492     ' RGB(244,244,244) cinza claro
+Public Const COR_TEXTO_HOVER As Long = 16777215 ' RGB(255,255,255) branco
+Public Const COR_TEXTO_NORMAL As Long = 0       ' RGB(0,0,0) preto
+
+' Restaura a cor normal de TODOS os botoes ActiveX da planilha (reset do hover).
+Public Sub ResetHoverActiveX(ByVal ws As Worksheet)
+    On Error Resume Next
+    Dim ole As OLEObject
+    For Each ole In ws.OLEObjects
+        If TypeName(ole.Object) = "CommandButton" Then
+            ole.Object.BackColor = RGB(244, 244, 244)
+            ole.Object.ForeColor = RGB(0, 0, 0)
+        End If
+    Next ole
+End Sub
+
+' --- FALLBACK: realce ao clicar em Shapes (AutoShape com OnAction) ---
+
+' Alterna o realce de uma Shape (vinho escuro) - chamar via OnAction.
+Public Sub ToggleRealce()
+    On Error Resume Next
+    Dim shp As Shape
+    Set shp = ActiveSheet.Shapes(Application.Caller)
+    If shp Is Nothing Then Exit Sub
+    ResetRealceShapes ActiveSheet
+    shp.Fill.ForeColor.RGB = RGB(58, 16, 24)
+    shp.TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(255, 255, 255)
+End Sub
+
+' Restaura cor normal de todas as AutoShapes-botao da planilha.
+Public Sub ResetRealceShapes(ByVal ws As Worksheet)
+    On Error Resume Next
+    Dim shp As Shape
+    For Each shp In ws.Shapes
+        If shp.Type = msoAutoShape Then
+            shp.Fill.ForeColor.RGB = RGB(244, 244, 244)
+            shp.TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(0, 0, 0)
+        End If
+    Next shp
+End Sub
+
+'------------------------------------------------------------------------------
+' MODELO DE EVENTO POR BOTAO ActiveX (copiar para o CodeModule da planilha):
+'
+' Private Sub btnFinanceiro_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, _
+'                                     ByVal X As Single, ByVal Y As Single)
+'     Me.btnFinanceiro.BackColor = RGB(58, 16, 24)   ' vinho escuro
+'     Me.btnFinanceiro.ForeColor = RGB(255, 255, 255) ' branco
+' End Sub
+'
+' ' Reset ao mover o mouse sobre a area da planilha (fora dos botoes):
+' Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+'     mod_Hover.ResetHoverActiveX Me
+' End Sub
+'------------------------------------------------------------------------------
+
+
+==== MODULE: ThisWorkbook ====
+'------------------------------------------------------------------------------
+' ThisWorkbook - escrever no CodeModule do componente "ThisWorkbook"
+'------------------------------------------------------------------------------
+Option Explicit
+
+' Ao abrir: recalcula KPIs, alerta MEI, avisos, idades e vai ao Menu Inicial.
+Private Sub Workbook_Open()
+    On Error Resume Next
+    AtualizarKPIs
+    AtualizarAlertaMEI
+    AtualizarAvisos
+    AtualizarIdades
+    Sheets("Menu Inicial").Activate
+End Sub
+
+
+==== MODULE: Sheet_MenuInicial ====
+'------------------------------------------------------------------------------
+' Sheet code da aba "Menu Inicial"
+' BUILDER: localizar o VBComponent cujo .Properties("Name") = "Menu Inicial"
+'          (nome de codigo do worksheet) e escrever este conteudo no CodeModule.
+'          NAO usar VBComponents.Add - o componente de sheet ja existe.
+'------------------------------------------------------------------------------
+Option Explicit
+
+' Ao ativar a aba, atualiza KPIs e avisos do painel.
+Private Sub Worksheet_Activate()
+    On Error Resume Next
+    AtualizarKPIs
+    AtualizarAvisos
+    AtualizarAlertaMEI
+End Sub

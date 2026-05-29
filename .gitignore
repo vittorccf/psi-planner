@@ -1,0 +1,22 @@
+# Temporários do Office / Excel
+~$*
+*.xar
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Build/validação da landing
+page/_shots/
+page/*.log
+
+# SO
+Thumbs.db
+.DS_Store
+desktop.ini

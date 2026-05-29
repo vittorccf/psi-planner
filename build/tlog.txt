@@ -1,0 +1,197 @@
+===== PARTE A: ESTRUTURA (openpyxl) =====
+== A1. Abas e ordem ==
+  OK  abas exatas/ordem: ['Menu Inicial', 'Financeiro', 'Pacientes', 'Calendário', 'Aniversariantes', 'Relatórios', 'Configurações']
+== A2. Propriedades do documento ==
+  OK  Title do documento = 'Psi Planner'
+== A3. Branding: eyebrow + sem 'Saluti' em célula alguma ==
+  OK  Menu!B1 eyebrow = 'PSI PLANNER'
+  OK  nenhum 'Saluti' residual em células (achados: [])
+== A4. Named ranges essenciais resolvem ==
+  OK  todos os named ranges presentes (faltando: [])
+== A5. Formatos numéricos ==
+  OK  Financeiro F7 moeda (\R\$\ #,##0.00)
+  OK  Financeiro B7 data (mm-dd-yy)
+  OK  Financeiro M9 percentual (0.0%)
+  OK  Menu C7 moeda (\R\$\ #,##0)
+  OK  Pacientes E7 data (mm-dd-yy)
+  OK  Pacientes N7 moeda (\R\$\ #,##0.00)
+  OK  Calendário K6 percentual (0.0%)
+== A6. Validações de dados (dropdowns) ==
+  OK  validação lista em Financeiro!D7
+  OK  validação lista em Financeiro!E7
+  OK  validação lista em Financeiro!G7
+  OK  validação lista em Financeiro!H7
+  OK  validação lista em Financeiro!C61
+  OK  validação lista em Financeiro!F61
+  OK  validação lista em Pacientes!J7
+  OK  validação lista em Pacientes!M7
+  OK  validação lista em Pacientes!O7
+  OK  validação lista em Aniversariantes!G7
+  OK  validação lista em Aniversariantes!H7
+== A7. Formatação condicional (rules por aba) ==
+  OK  Financeiro tem 7 CF rules (>= 7)
+  OK  Pacientes tem 4 CF rules (>= 4)
+  OK  Calendário tem 4 CF rules (>= 4)
+  OK  Aniversariantes tem 3 CF rules (>= 3)
+  OK  Relatórios tem 2 CF rules (>= 2)
+== A8. Freeze panes ==
+  OK  Financeiro freeze=B7
+  OK  Pacientes freeze=B7
+  OK  Aniversariantes freeze=B7
+== A9. Impressão (orientação; print_area omitido de propósito) ==
+  OK  Menu Inicial orientação=landscape (esp. landscape)
+  OK  Menu Inicial sem print_area (evita travar abertura) = ''
+  OK  Financeiro orientação=landscape (esp. landscape)
+  OK  Financeiro sem print_area (evita travar abertura) = ''
+  OK  Pacientes orientação=landscape (esp. landscape)
+  OK  Pacientes sem print_area (evita travar abertura) = ''
+  OK  Calendário orientação=landscape (esp. landscape)
+  OK  Calendário sem print_area (evita travar abertura) = ''
+  OK  Aniversariantes orientação=landscape (esp. landscape)
+  OK  Aniversariantes sem print_area (evita travar abertura) = ''
+  OK  Relatórios orientação=landscape (esp. landscape)
+  OK  Relatórios sem print_area (evita travar abertura) = ''
+  OK  Configurações orientação=portrait (esp. portrait)
+  OK  Configurações sem print_area (evita travar abertura) = ''
+== A10. Rodapé com marca do produto ==
+  OK  Menu Inicial rodapé contém 'Psi Planner'
+  OK  Financeiro rodapé contém 'Psi Planner'
+  OK  Pacientes rodapé contém 'Psi Planner'
+  OK  Calendário rodapé contém 'Psi Planner'
+  OK  Aniversariantes rodapé contém 'Psi Planner'
+  OK  Relatórios rodapé contém 'Psi Planner'
+  OK  Configurações rodapé contém 'Psi Planner'
+== A11. Cores de aba ==
+  OK  Menu tab vinho (FF5A1E2A)
+  OK  Financeiro tab mute (FF3B3B3B)
+  OK  Pacientes tab mute (FF3B3B3B)
+  OK  Calendário tab mute (FF3B3B3B)
+  OK  Aniversariantes tab mute (FF3B3B3B)
+  OK  Relatórios tab mute (FF3B3B3B)
+  OK  Configurações tab mute (FF3B3B3B)
+== A12. Colunas auxiliares ocultas + gridlines/headers off ==
+  OK  Financeiro AB oculta
+  OK  Menu Inicial gridlines off
+  OK  Menu Inicial headers off
+  OK  Financeiro gridlines off
+  OK  Financeiro headers off
+  OK  Pacientes gridlines off
+  OK  Pacientes headers off
+  OK  Calendário gridlines off
+  OK  Calendário headers off
+  OK  Aniversariantes gridlines off
+  OK  Aniversariantes headers off
+  OK  Relatórios gridlines off
+  OK  Relatórios headers off
+  OK  Configurações gridlines off
+  OK  Configurações headers off
+
+===== PARTE B: COMPORTAMENTO (COM) =====
+== B1. Sem células de erro (todas as abas) ==
+  OK  total de células com erro = 0
+== B2. KPIs ao vivo conferem com valores esperados ==
+  OK  pacientes ativos = 7.0 (esp 7)
+  OK  receita mês = 870.0 (esp 870)
+  OK  valor pendente = 350.0 (esp 350)
+  OK  faltas = 1.0 (esp 1)
+  OK  aniversariantes = 3.0 (esp 3)
+  OK  próxima consulta resolvida = '27/05'
+  OK  recebido (M6) = 1560.0
+  OK  pendente (M7) = 350.0
+  OK  lucro líquido (M8) = 101.0 (esp 101)
+  OK  inadimplência (M9) = 0.18324607329842932
+  OK  faturamento anual (M11) = 1560.0
+  OK  indicador MEI (M10) = 'Dentro do limite'
+== B3. Navegação (7 macros) ==
+  OK  IrFinanceiro -> Financeiro
+  OK  IrPacientes -> Pacientes
+  OK  IrCalendario -> Calendário
+  OK  IrAniversariantes -> Aniversariantes
+  OK  IrRelatorios -> Relatórios
+  OK  IrConfiguracoes -> Configurações
+  OK  IrMenu -> Menu Inicial
+== B4. Gráficos presentes e com séries ==
+  OK  Financeiro tem 5 gráfico(s) (esp 5)
+  OK    Financeiro gráfico #1 com série/dados
+  OK    Financeiro gráfico #2 com série/dados
+  OK    Financeiro gráfico #3 com série/dados
+  OK    Financeiro gráfico #4 com série/dados
+  OK    Financeiro gráfico #5 com série/dados
+  OK  Relatórios tem 3 gráfico(s) (esp 3)
+  OK    Relatórios gráfico #1 com série/dados
+  OK    Relatórios gráfico #2 com série/dados
+  OK    Relatórios gráfico #3 com série/dados
+  OK  Aniversariantes tem 1 gráfico(s) (esp 1)
+  OK    Aniversariantes gráfico #1 com série/dados
+  OK  Menu Inicial tem 0 gráfico(s) (esp 0)
+  OK  Pacientes tem 0 gráfico(s) (esp 0)
+  OK  Calendário tem 0 gráfico(s) (esp 0)
+  OK  Configurações tem 0 gráfico(s) (esp 0)
+== B5. Procedimentos interativos presentes (compila pois macros rodam) ==
+  OK  procedimento GerarRecibo definido
+  OK  procedimento ImprimirRecibo definido
+  OK  procedimento ExportarRelatorioPDF definido
+  OK  procedimento AbrirFormConsulta definido
+  OK  procedimento RegistrarConsulta definido
+  OK  procedimento RemarcarConsulta definido
+  OK  procedimento FinalizarConsulta definido
+  OK  procedimento BuscarPaciente definido
+  OK  procedimento LimparFiltros definido
+  OK  procedimento FiltrarPorStatus definido
+  OK  procedimento FiltrarPorConvenio definido
+  OK  procedimento FiltrarPorMesAniversario definido
+  OK  procedimento FiltrarPorFrequencia definido
+  OK  procedimento FiltrarPorFaturamento definido
+== B6. Subs de cálculo não quebram ==
+  OK  AtualizarAvisos executou
+  OK  AtualizarAlertaMEI executou
+  OK  AtualizarIdades executou
+  OK  LimparFiltros executou
+== B7. GerarRecibo (fluxo sucesso, sem MsgBox) ==
+  OK  recibo header sem 'SALUTI' (='Clínica Vita')
+  OK  recibo header = nome da clínica ('Clínica Vita')
+  OK  recibo paciente = 'Ana Beatriz Souza'
+== B8. RegistrarConsulta (append no log da agenda) ==
+  OK  consulta registrada na linha 108 (C='Teste QA')
+== B9. Exportar PDF (capacidade ExportAsFixedFormat) ==
+  OK  PDF exportado (191352 bytes)
+
+===== PARTE C: CONTRASTE WCAG =====
+  OK  ink/white            21.00:1 (AAA)
+  OK  ink/surface          19.09:1 (AAA)
+  OK  mute/white           11.20:1 (AAA)
+  OK  mute/surface         10.18:1 (AAA)
+  OK  mute/surface_deep    9.31:1 (AAA)
+  OK  ink/done             17.78:1 (AAA)
+  OK  ink/wait             16.68:1 (AAA)
+  OK  vinho_esc/alert      11.52:1 (AAA)
+  OK  white/vinho          12.70:1 (AAA)
+  OK  vinho/white          12.70:1 (AAA)
+
+===== PARTE D: INTEGRIDADE DO SPEC (psi_planner_spec.html) =====
+  OK  8 mockups embutidos (achados: 8)
+  OK  todos os mockups base64 não-triviais
+  OK  mockups distintos (sem duplicata/imagem quebrada)
+  OK  spec contém marcador: 'Especificação Visual da Planilha'
+  OK  spec contém marcador: 'Psi <span class="wine">Planner</'
+  OK  spec contém marcador: 'Estrutura geral'
+  OK  spec contém marcador: 'Identidade visual'
+  OK  spec contém marcador: 'Paleta oficial'
+  OK  spec contém marcador: 'Tipografia'
+  OK  spec contém marcador: 'Notas técnicas'
+  OK  spec contém marcador: 'Saluti · Projeto Psi Planner'
+  OK  spec documenta aba: Menu Inicial
+  OK  spec documenta aba: Financeiro
+  OK  spec documenta aba: Pacientes
+  OK  spec documenta aba: Calendário
+  OK  spec documenta aba: Aniversariantes
+  OK  spec documenta aba: Relatórios
+  OK  spec documenta aba: Configurações
+  OK  paleta contém #000000
+  OK  paleta contém #3B3B3B
+  OK  paleta contém #A6A6A6
+  OK  paleta contém #F4F4F4
+  OK  paleta contém #5A1E2A
+  OK  paleta contém #3A1018
+
+==== RESULTADO: PASS | 0 falha(s), 0 aviso(s) ====

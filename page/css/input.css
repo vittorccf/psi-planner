@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Psi Planner — camada de componentes (estética boutique)
+   ============================================================ */
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-body text-ink bg-offwhite antialiased;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { @apply font-display; }
+  :focus-visible {
+    outline: 3px solid #8E3B4C;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+}
+
+@layer components {
+  .wrap { @apply max-w-content mx-auto px-5 sm:px-8; }
+
+  /* Botões */
+  .btn { @apply inline-flex items-center justify-center gap-2 font-body font-semibold rounded-full transition-all duration-200 text-center; }
+  .btn-gold {
+    @apply btn bg-gold text-wine-dark px-8 py-4 text-base shadow-soft;
+  }
+  .btn-gold:hover { @apply -translate-y-0.5; background:#d8ba81; }
+  .btn-wine { @apply btn bg-wine text-offwhite px-8 py-4 text-base; }
+  .btn-wine:hover { @apply bg-wine-light; }
+  .btn-ghost { @apply btn border border-gold/60 text-wine px-6 py-3 text-sm; }
+  .btn-ghost:hover { @apply bg-wine text-offwhite border-wine; }
+
+  /* Rótulo de seção (eyebrow) dourado em caixa alta com tracking */
+  .eyebrow { @apply font-body text-xs font-semibold uppercase tracking-widest2 text-wine-light; }
+  /* default seguro p/ fundo claro (AA); em seções escuras é sobrescrito inline p/ #C9A86A */
+  .eyebrow-gold { @apply font-body text-xs font-semibold uppercase tracking-widest2; color:#7E6330; }
+
+  /* Filete dourado decorativo */
+  .rule-gold { @apply block h-px w-16 bg-gold; }
+
+  /* Cartões */
+  .card { @apply bg-white rounded-2xl border border-wine/5 shadow-card p-7; }
+
+  /* Tag/etiqueta "copy proposta (revisar)" */
+  .review-flag {
+    @apply inline-block text-[10px] font-body font-semibold uppercase tracking-wider px-2 py-0.5 rounded;
+    background:#FFF2CC; color:#7a5a12; border:1px dashed #c9a86a;
+  }
+}

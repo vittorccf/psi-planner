@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termos de Uso — Psi Planner</title>
+  <meta name="description" content="Termos de Uso do produto digital Psi Planner." />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Prata&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-offwhite text-ink">
+  <header class="bg-wine text-offwhite">
+    <div class="wrap flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3" aria-label="Voltar ao início">
+        <img src="assets/logo-monograma.webp" width="32" height="32" alt="" class="h-8 w-8" />
+        <span class="font-display text-lg tracking-[0.18em]">PSI&nbsp;PLANNER</span>
+      </a>
+      <a href="index.html" class="text-sm text-goldsoft hover:underline">← Voltar</a>
+    </div>
+  </header>
+
+  <main class="wrap max-w-3xl py-12 sm:py-16">
+    <h1 class="font-display text-3xl sm:text-4xl text-wine">Termos de Uso</h1>
+    <p class="mt-2 text-sm text-ink/60">Última atualização: <strong>{{DATA_ATUALIZACAO}}</strong></p>
+
+    <div class="legal mt-8 space-y-6 text-ink/80 leading-relaxed">
+      <p>Estes Termos de Uso regulam a aquisição e o uso do produto digital <strong>Psi Planner</strong>, comercializado por <strong>{{NOME_VENDEDOR}}</strong>, CPF/CNPJ nº <strong>{{CPF_CNPJ}}</strong>, em <strong>{{CIDADE_UF}}</strong>. Ao realizar a compra, você declara ter lido e concordado com estes Termos.</p>
+
+      <h2 class="font-display text-xl text-wine pt-2">1. Descrição do produto</h2>
+      <p>O Psi Planner é uma planilha digital no formato <strong>.xlsm</strong> (Microsoft Excel com macros), destinada à organização financeira e clínica de profissionais autônomos. O produto é entregue por meio digital, sem envio de item físico.</p>
+
+      <h2 class="font-display text-xl text-wine pt-2">2. Requisitos técnicos</h2>
+      <p>O produto requer o <strong>Microsoft Excel desktop</strong> (Windows ou Mac) com suporte a macros habilitado. <strong>Não há garantia de funcionamento</strong> no Google Sheets, em aplicativos de celular ou em outros editores de planilha. Recomendamos verificar os requisitos antes da compra.</p>
+
+      <h2 class="font-display text-xl text-wine pt-2">3. Licença de uso</h2>
+      <p>A compra concede uma <strong>licença de uso pessoal e intransferível</strong>. É vedada a revenda, redistribuição, compartilhamento, cópia para terceiros ou disponibilização pública do arquivo, no todo ou em parte.</p>
+
+      <h2 class="font-display text-xl text-wine pt-2">4. Pagamento e entrega</h2>
+      <p>O pagamento é processado pela plataforma <strong>Kiwify</strong>. Após a confirmação, o acesso para download é liberado por e-mail. O valor do produto é de <strong>R$ 97,00</strong>, em pagamento único.</p>
+
+      <h2 class="font-display text-xl text-wine pt-2">5. Direito de arrependimento e reembolso</h2>
+      <p>Nos termos do art. 49 do Código de Defesa do Consumidor, você tem <strong>7 (sete) dias</strong> para solicitar o reembolso integral. Veja a <a href="politica-de-reembolso.html" class="text-wine underline">Política de Reembolso</a>.</p>
+
+      <h2 class="font-display text-xl text-wine pt-2">6. Limitação de responsabilidade</h2>
+      <p>O Psi Planner é uma ferramenta de apoio à organização e <strong>não substitui orientação contábil, jurídica ou profissional</strong>. As decisões tomadas a partir dos dados inseridos são de responsabilidade exclusiva do usuário. Não nos responsabilizamos por perdas decorrentes de uso indevido, erros de digitação ou incompatibilidade de software.</p>
+
+      <h2 class="font-display text-xl text-wine pt-2">7. Propriedade intelectual</h2>
+      <p>Todo o conteúdo, layout, marca e estrutura do Psi Planner são protegidos por direitos autorais e pertencem a {{NOME_VENDEDOR}}.</p>
+
+      <h2 class="font-display text-xl text-wine pt-2">8. Foro</h2>
+      <p>Fica eleito o foro da comarca de <strong>{{CIDADE_UF}}</strong> para dirimir eventuais controvérsias, salvo disposição legal em contrário aplicável ao consumidor.</p>
+
+      <p class="text-sm text-ink/55 pt-4 border-t border-wine/10">Documento modelo — revise com apoio jurídico antes da publicação. Substitua todos os campos entre chaves {{ }}.</p>
+    </div>
+  </main>
+
+  <footer class="bg-wine-dark text-ondark/60 text-xs">
+    <div class="wrap py-8 text-center">
+      <p>{{NOME_VENDEDOR}} · CPF/CNPJ: {{CPF_CNPJ}} · {{CIDADE_UF}}</p>
+      <p class="mt-1">© 2026 Psi Planner. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

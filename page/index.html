@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psi Planner — Seu consultório organizado. Sua mente tranquila.</title>
+  <meta name="description" content="Planner financeiro-clínico em Excel para psicólogos, psicanalistas e terapeutas autônomos (MEI). Controle financeiro, agenda, pacientes e indicadores em um só arquivo, com cara de aplicativo." />
+  <meta name="theme-color" content="#5A1E2A" />
+  <link rel="canonical" href="https://{{DOMINIO}}/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Psi Planner — Seu consultório organizado. Sua mente tranquila." />
+  <meta property="og:description" content="Planner financeiro-clínico em Excel para psicólogos autônomos (MEI): finanças, agenda, pacientes e indicadores em um só arquivo." />
+  <meta property="og:image" content="https://{{DOMINIO}}/assets/og-image.jpg" />
+  <meta property="og:url" content="https://{{DOMINIO}}/" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Prata&family=Inter:wght@400;500;600;700&display=optional" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=Inter:wght@400;500;600;700&display=optional" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=Inter:wght@400;500;600;700&display=optional" /></noscript>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- ============ TRACKING (preencher IDs) ============ -->
+  <!-- Google Analytics 4 -->
+  <script>
+    // GA4 — substitua {{GA_ID}} pelo ID real (ex.: G-XXXXXXXXXX)
+    window.GA_ID = "{{GA_ID}}";
+    window.META_PIXEL_ID = "{{META_PIXEL_ID}}";
+  </script>
+
+  <!-- Dados estruturados (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Psi Planner",
+    "description": "Planner financeiro-clínico em Excel para psicólogos, psicanalistas e terapeutas autônomos (MEI).",
+    "brand": { "@type": "Brand", "name": "Psi Planner" },
+    "offers": {
+      "@type": "Offer",
+      "price": "97.00",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/InStock",
+      "url": "{{LINK_KIWIFY}}"
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-offwhite text-ink overflow-x-hidden">
+  <a href="#solucao" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-wine focus:text-offwhite focus:px-4 focus:py-2 focus:rounded-full">Pular para o conteúdo</a>
+
+  <!-- ===================== HEADER FIXO ===================== -->
+  <header id="topo" class="fixed top-0 inset-x-0 z-40 bg-offwhite/90 backdrop-blur border-b border-wine/10">
+    <div class="wrap flex items-center justify-between h-16 sm:h-20">
+      <a href="#topo" class="flex items-center gap-3" aria-label="Psi Planner — início">
+        <img src="assets/logo-monograma.webp" width="40" height="40" alt="" class="h-9 w-9 sm:h-10 sm:w-10" />
+        <span class="font-display text-wine text-lg sm:text-xl tracking-[0.18em]">PSI&nbsp;PLANNER</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 font-body text-sm text-ink/80" aria-label="Seções">
+        <a href="#solucao" class="hover:text-wine transition">O que é</a>
+        <a href="#areas" class="hover:text-wine transition">O que vem dentro</a>
+        <a href="#oferta" class="hover:text-wine transition">Preço</a>
+        <a href="#faq" class="hover:text-wine transition">Dúvidas</a>
+      </nav>
+      <a href="{{LINK_KIWIFY}}" data-cta="header" class="btn-gold !px-5 !py-2.5 !text-sm hidden lg:inline-flex shrink-0">Quero o Psi Planner</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="relative pt-28 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
+      <div class="wrap grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
+        <div class="text-center lg:text-left">
+          <span class="rule-gold mx-auto lg:mx-0 mb-6"></span>
+          <p class="eyebrow mb-4">Para psicólogos, psicanalistas e terapeutas autônomos</p>
+          <h1 class="font-display text-4xl sm:text-5xl xl:text-6xl leading-[1.08] text-wine">
+            Seu consultório organizado.<br /><span class="text-wine-light">Sua mente tranquila.</span>
+          </h1>
+          <p class="mt-6 text-lg text-ink/80 max-w-xl mx-auto lg:mx-0">
+            O <strong>Psi Planner</strong> reúne finanças, agenda, pacientes e indicadores do seu consultório
+            em um único arquivo de Excel — com cara de aplicativo, modo claro e modo escuro.
+          </p>
+          <div class="mt-9 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="{{LINK_KIWIFY}}" data-cta="hero" class="btn-gold w-full sm:w-auto">Quero o Psi Planner · R$ 97</a>
+            <a href="#solucao" class="btn-ghost w-full sm:w-auto">Ver como funciona</a>
+          </div>
+          <div class="mt-7 flex items-center gap-3 justify-center lg:justify-start text-sm text-ink/80">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A1E2A" stroke-width="1.6" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span>Garantia incondicional de <strong>7 dias</strong> · Pagamento único</span>
+          </div>
+        </div>
+
+        <!-- Composição de mockups -->
+        <div class="relative mx-auto w-full max-w-xl">
+          <div class="rounded-2xl overflow-hidden shadow-soft border border-wine/10 bg-white">
+            <img src="assets/mockups/menu-light.webp" width="1100" height="456" alt="Tela inicial do Psi Planner no modo claro, com indicadores de pacientes, receita e avisos do consultório" class="w-full h-auto" fetchpriority="high" />
+          </div>
+          <div class="hidden sm:block absolute -bottom-8 -right-4 w-2/3 rounded-xl overflow-hidden shadow-soft border border-gold/30 bg-charcoal">
+            <img src="assets/mockups/graficos-dark.webp" width="1100" height="616" loading="lazy" alt="Gráficos financeiros do Psi Planner no modo escuro Night Wine" class="w-full h-auto" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== A DOR ===================== -->
+    <section class="py-16 sm:py-24 bg-white border-y border-wine/5">
+      <div class="wrap">
+        <div class="max-w-2xl mx-auto text-center">
+          <p class="eyebrow mb-3">A rotina de quem atende sozinho</p>
+          <h2 class="text-3xl sm:text-4xl text-wine leading-tight">Você é ótimo no consultório. Mas a gestão virou um peso.</h2>
+          <p class="mt-5 text-ink/75 text-lg">
+            Caderno, bloco de notas, app do banco e a memória. No fim do mês, ninguém sabe ao certo
+            quanto entrou, quem ficou devendo e se o faturamento está perto do teto do MEI.
+          </p>
+        </div>
+
+        <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="card">
+            <div class="text-wine-light mb-3">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2v20M5 7l7-5 7 5"/><path d="M5 17l7 5 7-5"/></svg>
+            </div>
+            <h3 class="font-display text-xl text-wine">Conta misturada</h3>
+            <p class="mt-2 text-sm text-ink/70">Dinheiro do consultório e o pessoal no mesmo lugar — você nunca sabe o lucro real.</p>
+          </div>
+          <div class="card">
+            <div class="text-wine-light mb-3">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3v18h18"/><path d="M19 9l-5 5-4-4-3 3"/></svg>
+            </div>
+            <h3 class="font-display text-xl text-wine">Medo do teto do MEI</h3>
+            <p class="mt-2 text-sm text-ink/70">Sem acompanhar o faturamento, o limite de R$ 81.000/ano chega de surpresa.</p>
+          </div>
+          <div class="card">
+            <div class="text-wine-light mb-3">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            <h3 class="font-display text-xl text-wine">Faltas e remarcações</h3>
+            <p class="mt-2 text-sm text-ink/70">Quem faltou? Quem remarcou? A agenda solta vira buraco no caixa.</p>
+          </div>
+          <div class="card">
+            <div class="text-wine-light mb-3">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <h3 class="font-display text-xl text-wine">Tempo perdido</h3>
+            <p class="mt-2 text-sm text-ink/70">Horas montando planilha do zero — tempo que deveria ser seu, ou de um paciente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== A SOLUÇÃO ===================== -->
+    <section id="solucao" class="py-16 sm:py-24 scroll-mt-20">
+      <div class="wrap grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1 grid grid-cols-2 gap-4">
+          <div class="rounded-xl overflow-hidden border border-wine/10 shadow-card bg-white col-span-2">
+            <img src="assets/mockups/financeiro.webp" width="1100" height="625" loading="lazy" alt="Tela Financeiro do Psi Planner: lançamentos, status de pagamento e indicadores, incluindo alerta de limite do MEI" class="w-full h-auto" />
+          </div>
+          <div class="rounded-xl overflow-hidden border border-gold/30 shadow-card bg-charcoal">
+            <img src="assets/mockups/menu-dark.webp" width="1100" height="536" loading="lazy" alt="Tela inicial do Psi Planner no modo escuro Night Wine" class="w-full h-auto" />
+          </div>
+          <div class="rounded-xl overflow-hidden border border-wine/10 shadow-card bg-white">
+            <img src="assets/mockups/calendario.webp" width="1100" height="775" loading="lazy" alt="Agenda semanal do Psi Planner com status de consultas, resumo do dia e lista de espera" class="w-full h-auto" />
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <span class="rule-gold mb-6"></span>
+          <p class="eyebrow mb-3">A solução</p>
+          <h2 class="text-3xl sm:text-4xl text-wine leading-tight">Um só arquivo. Todo o seu consultório sob controle.</h2>
+          <p class="mt-5 text-ink/75 text-lg">
+            O Psi Planner é um planner financeiro-clínico em <strong>Excel</strong>, pensado para o terapeuta
+            autônomo. Você lança um atendimento e os indicadores se atualizam sozinhos — receita, inadimplência,
+            faturamento anual e o quanto falta para o teto do MEI.
+          </p>
+          <ul class="mt-7 space-y-4">
+            <li class="flex gap-3"><span class="mt-1 text-gold" aria-hidden="true">◆</span><span><strong class="text-wine">KPIs automáticos:</strong> receita do mês, valor pendente, % de inadimplência e faturamento anual.</span></li>
+            <li class="flex gap-3"><span class="mt-1 text-gold" aria-hidden="true">◆</span><span><strong class="text-wine">Alerta do teto do MEI:</strong> acompanhe em tempo real se está dentro do limite de R$ 81.000/ano.</span></li>
+            <li class="flex gap-3"><span class="mt-1 text-gold" aria-hidden="true">◆</span><span><strong class="text-wine">Modo claro e modo escuro</strong> “Night Wine” — escolha o visual que combina com o seu dia.</span></li>
+          </ul>
+          <a href="{{LINK_KIWIFY}}" data-cta="solucao" class="btn-wine mt-9">Quero organizar meu consultório</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== O QUE VEM DENTRO (7 ÁREAS) ===================== -->
+    <section id="areas" class="py-16 sm:py-24 bg-wine text-offwhite scroll-mt-20">
+      <div class="wrap">
+        <div class="max-w-2xl mx-auto text-center">
+          <span class="rule-gold mx-auto mb-6" style="background:#C9A86A"></span>
+          <p class="eyebrow-gold mb-3" style="color:#C9A86A">O que vem dentro</p>
+          <h2 class="text-3xl sm:text-4xl text-offwhite leading-tight">7 áreas integradas, prontas para usar</h2>
+          <p class="mt-5 text-ondark/80 text-lg">Tudo conectado pelo Menu inicial — você navega entre as áreas como em um aplicativo.</p>
+        </div>
+
+        <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- 1 Menu -->
+          <article class="rounded-2xl p-7 bg-wine-dark/60 border border-gold/20">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C9A86A" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+            <h3 class="mt-4 font-display text-xl text-offwhite">Menu inicial</h3>
+            <p class="mt-2 text-sm text-ondark/75">Painel com os números do mês, acesso rápido e avisos importantes do consultório.</p>
+          </article>
+          <!-- 2 Financeiro -->
+          <article class="rounded-2xl p-7 bg-wine-dark/60 border border-gold/20">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C9A86A" stroke-width="1.5" aria-hidden="true"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <h3 class="mt-4 font-display text-xl text-offwhite">Financeiro</h3>
+            <p class="mt-2 text-sm text-ondark/75">Lançamentos por paciente, forma de pagamento, status e indicadores — com alerta do teto do MEI.</p>
+          </article>
+          <!-- 3 Pacientes -->
+          <article class="rounded-2xl p-7 bg-wine-dark/60 border border-gold/20">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C9A86A" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3 3 0 0 1 0 6M21 20c0-2.6-1.6-4.8-3.8-5.6"/></svg>
+            <h3 class="mt-4 font-display text-xl text-offwhite">Pacientes</h3>
+            <p class="mt-2 text-sm text-ondark/75">Cadastro organizado com contato, histórico e dados essenciais de cada atendimento.</p>
+          </article>
+          <!-- 4 Calendário -->
+          <article class="rounded-2xl p-7 bg-wine-dark/60 border border-gold/20">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C9A86A" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <h3 class="mt-4 font-display text-xl text-offwhite">Calendário</h3>
+            <p class="mt-2 text-sm text-ondark/75">Agenda semanal com status (confirmado, faltou, cancelado), resumo do dia e lista de espera.</p>
+          </article>
+          <!-- 5 Aniversariantes -->
+          <article class="rounded-2xl p-7 bg-wine-dark/60 border border-gold/20">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C9A86A" stroke-width="1.5" aria-hidden="true"><path d="M5 21h14v-7H5z"/><path d="M4 14a3 3 0 0 0 4 0 3 3 0 0 0 4 0 3 3 0 0 0 4 0 3 3 0 0 0 4 0"/><path d="M12 7V4M12 7c-1 0-1.5-.8-1.5-1.5S12 3 12 3s1.5 1 1.5 2.5S13 7 12 7z"/></svg>
+            <h3 class="mt-4 font-display text-xl text-offwhite">Aniversariantes</h3>
+            <p class="mt-2 text-sm text-ondark/75">Lista automática de quem faz aniversário — um gesto simples que fortalece o vínculo.</p>
+          </article>
+          <!-- 6 Relatórios -->
+          <article class="rounded-2xl p-7 bg-wine-dark/60 border border-gold/20">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C9A86A" stroke-width="1.5" aria-hidden="true"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7"/><rect x="12" y="7" width="3" height="11"/><rect x="17" y="13" width="3" height="5"/></svg>
+            <h3 class="mt-4 font-display text-xl text-offwhite">Relatórios</h3>
+            <p class="mt-2 text-sm text-ondark/75">Gráficos de receita, evolução acumulada e distribuição por forma de pagamento.</p>
+          </article>
+          <!-- 7 Configurações -->
+          <article class="rounded-2xl p-7 bg-wine-dark/60 border border-gold/20 sm:col-span-2 lg:col-span-1">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C9A86A" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 6.6 19l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 4 13.6H4a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 5 6.6l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 11 4V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+            <h3 class="mt-4 font-display text-xl text-offwhite">Configurações</h3>
+            <p class="mt-2 text-sm text-ondark/75">Personalize o tema (claro/escuro), dados do consultório e preferências do planner.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEMONSTRAÇÃO VISUAL ===================== -->
+    <section class="py-16 sm:py-24">
+      <div class="wrap">
+        <div class="max-w-2xl mx-auto text-center mb-12">
+          <p class="eyebrow mb-3">Por dentro do planner</p>
+          <h2 class="text-3xl sm:text-4xl text-wine leading-tight">Veja as telas reais do Psi Planner</h2>
+          <p class="mt-5 text-ink/75 text-lg">As mesmas telas que você vai usar — no modo claro e no modo escuro.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <figure class="rounded-xl overflow-hidden border border-wine/10 shadow-card bg-white"><img src="assets/mockups/financeiro-dark.webp" width="1100" height="637" loading="lazy" alt="Financeiro no modo escuro Night Wine" class="w-full h-auto" /><figcaption class="sr-only">Financeiro — modo escuro</figcaption></figure>
+          <figure class="rounded-xl overflow-hidden border border-wine/10 shadow-card bg-white"><img src="assets/mockups/pacientes.webp" width="1100" height="224" loading="lazy" alt="Cadastro de pacientes do Psi Planner" class="w-full h-auto" /><figcaption class="sr-only">Pacientes</figcaption></figure>
+          <figure class="rounded-xl overflow-hidden border border-wine/10 shadow-card bg-white"><img src="assets/mockups/relatorios.webp" width="1100" height="650" loading="lazy" alt="Relatórios e gráficos do Psi Planner" class="w-full h-auto" /><figcaption class="sr-only">Relatórios</figcaption></figure>
+          <figure class="rounded-xl overflow-hidden border border-wine/10 shadow-card bg-white"><img src="assets/mockups/aniversariantes.webp" width="1100" height="423" loading="lazy" alt="Lista de aniversariantes do Psi Planner" class="w-full h-auto" /><figcaption class="sr-only">Aniversariantes</figcaption></figure>
+          <figure class="rounded-xl overflow-hidden border border-wine/10 shadow-card bg-white"><img src="assets/mockups/configuracoes.webp" width="462" height="623" loading="lazy" alt="Configurações e personalização de tema do Psi Planner" class="w-full h-auto" /><figcaption class="sr-only">Configurações</figcaption></figure>
+          <figure class="rounded-xl overflow-hidden border border-gold/30 shadow-card bg-charcoal"><img src="assets/mockups/graficos-dark.webp" width="1100" height="616" loading="lazy" alt="Gráficos financeiros no modo escuro" class="w-full h-auto" /><figcaption class="sr-only">Gráficos — modo escuro</figcaption></figure>
+        </div>
+        <!-- {{VIDEO}} — se houver um vídeo de demonstração, incorpore aqui (placeholder) -->
+      </div>
+    </section>
+
+    <!-- ===================== PARA QUEM É / REQUISITO EXCEL ===================== -->
+    <section class="py-16 sm:py-24 bg-white border-y border-wine/5">
+      <div class="wrap grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="rule-gold mb-6"></span>
+          <p class="eyebrow mb-3">Para quem é</p>
+          <h2 class="text-3xl sm:text-4xl text-wine leading-tight">Feito para o terapeuta que atende por conta própria</h2>
+          <ul class="mt-7 space-y-3 text-ink/80">
+            <li class="flex gap-3"><span class="text-gold mt-1" aria-hidden="true">✓</span> Psicólogos, psicanalistas e terapeutas autônomos (MEI)</li>
+            <li class="flex gap-3"><span class="text-gold mt-1" aria-hidden="true">✓</span> Quem atende em consultório, on-line ou nos dois formatos</li>
+            <li class="flex gap-3"><span class="text-gold mt-1" aria-hidden="true">✓</span> Quem quer parar de misturar conta pessoal e do consultório</li>
+            <li class="flex gap-3"><span class="text-gold mt-1" aria-hidden="true">✓</span> Quem prefere uma ferramenta simples, no Excel, sem mensalidade</li>
+          </ul>
+        </div>
+
+        <!-- Aviso honesto sobre requisito técnico -->
+        <div class="rounded-2xl border border-gold/40 bg-status-yellow/60 p-7">
+          <div class="flex items-center gap-3 mb-3">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7a5a12" stroke-width="1.6" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+            <h3 class="font-display text-xl text-wine">Requisito importante — leia antes de comprar</h3>
+          </div>
+          <p class="text-ink/85">
+            O Psi Planner foi feito para o <strong>Microsoft Excel desktop</strong> (Windows ou Mac), pois usa
+            recursos e macros (.xlsm) que dão a ele cara de aplicativo.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-ink/80">
+            <li class="flex gap-2"><span aria-hidden="true">•</span> <span><strong>Não</strong> funciona bem no Google Sheets (recursos e macros não são compatíveis).</span></li>
+            <li class="flex gap-2"><span aria-hidden="true">•</span> <span><strong>Não</strong> é indicado para uso pelo celular — a experiência completa é no computador.</span></li>
+            <li class="flex gap-2"><span aria-hidden="true">•</span> <span>No Mac, algumas macros podem ter pequenas diferenças de comportamento.</span></li>
+          </ul>
+          <p class="mt-4 text-sm text-ink/80">Preferimos avisar com clareza para que a sua compra faça sentido.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROVA SOCIAL (DEPOIMENTOS) ===================== -->
+    <section class="py-16 sm:py-24">
+      <div class="wrap">
+        <div class="max-w-2xl mx-auto text-center mb-10">
+          <p class="eyebrow mb-3">Quem usa, recomenda</p>
+          <h2 class="text-3xl sm:text-4xl text-wine leading-tight">Histórias de quem organizou o consultório</h2>
+          <p class="mt-4"><span class="review-flag">Depoimentos: substituir pelos reais</span></p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          <figure class="card">
+            <div class="text-gold text-2xl leading-none mb-3" aria-hidden="true">“</div>
+            <blockquote class="text-ink/80">{{DEPOIMENTO_1}} — espaço reservado para um depoimento real de paciente/cliente, com permissão de uso.</blockquote>
+            <figcaption class="mt-5 text-sm text-wine font-semibold">{{NOME_DEPOIMENTO_1}} <span class="block text-ink/70 font-normal">{{CRP_OU_CIDADE_1}}</span></figcaption>
+          </figure>
+          <figure class="card">
+            <div class="text-gold text-2xl leading-none mb-3" aria-hidden="true">“</div>
+            <blockquote class="text-ink/80">{{DEPOIMENTO_2}} — espaço reservado para um depoimento real, com permissão de uso.</blockquote>
+            <figcaption class="mt-5 text-sm text-wine font-semibold">{{NOME_DEPOIMENTO_2}} <span class="block text-ink/70 font-normal">{{CRP_OU_CIDADE_2}}</span></figcaption>
+          </figure>
+          <figure class="card">
+            <div class="text-gold text-2xl leading-none mb-3" aria-hidden="true">“</div>
+            <blockquote class="text-ink/80">{{DEPOIMENTO_3}} — espaço reservado para um depoimento real, com permissão de uso.</blockquote>
+            <figcaption class="mt-5 text-sm text-wine font-semibold">{{NOME_DEPOIMENTO_3}} <span class="block text-ink/70 font-normal">{{CRP_OU_CIDADE_3}}</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== OFERTA + PREÇO ===================== -->
+    <section id="oferta" class="py-16 sm:py-24 bg-charcoal text-ondark scroll-mt-20">
+      <div class="wrap">
+        <div class="max-w-xl mx-auto">
+          <div class="text-center mb-8">
+            <span class="rule-gold mx-auto mb-6" style="background:#C9A86A"></span>
+            <p class="eyebrow-gold mb-3" style="color:#C9A86A">A oferta</p>
+            <h2 class="text-3xl sm:text-4xl text-offwhite leading-tight">Organize seu consultório hoje</h2>
+          </div>
+
+          <div class="rounded-3xl bg-wine border border-gold/30 p-8 sm:p-10 text-center shadow-soft">
+            <img src="assets/logo-monograma.webp" width="56" height="56" alt="" class="mx-auto h-12 w-12 mb-4" />
+            <p class="font-display text-2xl text-offwhite">Psi Planner</p>
+            <p class="text-ondark/75 text-sm mt-1">Planilha .xlsm · modo claro e escuro · 7 áreas</p>
+
+            <div class="my-7">
+              <p class="text-ondark/70 text-sm">Pagamento único — sem mensalidade</p>
+              <p class="font-display text-5xl text-goldsoft mt-1">R$ 97</p>
+              <p class="text-ondark/70 text-sm mt-1">à vista no Pix ou em até 12x no cartão*</p>
+            </div>
+
+            <ul class="text-left text-sm text-ondark/85 space-y-2 max-w-xs mx-auto mb-8">
+              <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span> Acesso imediato ao arquivo após a compra</li>
+              <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span> 7 áreas integradas, prontas para usar</li>
+              <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span> Modo claro e modo escuro “Night Wine”</li>
+              <li class="flex gap-2"><span class="text-gold" aria-hidden="true">✓</span> Garantia incondicional de 7 dias</li>
+            </ul>
+
+            <a href="{{LINK_KIWIFY}}" data-cta="oferta" class="btn-gold w-full !py-5 text-lg">Comprar agora · R$ 97</a>
+            <p class="text-ondark/70 text-xs mt-4">Compra 100% segura processada pela Kiwify. *Parcelamento com juros da operadora.</p>
+          </div>
+
+          <!-- Garantia -->
+          <div class="mt-8 flex items-center gap-4 justify-center text-center">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#C9A86A" stroke-width="1.4" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            <p class="text-ondark/85 text-sm max-w-sm text-left">
+              <strong class="text-offwhite">Garantia de 7 dias.</strong> Se não for para você, peça reembolso
+              dentro de 7 dias e devolvemos 100% do valor — direito de arrependimento (CDC).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section id="faq" class="py-16 sm:py-24 bg-white scroll-mt-20">
+      <div class="wrap max-w-3xl">
+        <div class="text-center mb-10">
+          <p class="eyebrow mb-3">Dúvidas frequentes</p>
+          <h2 class="text-3xl sm:text-4xl text-wine leading-tight">Tudo que você precisa saber</h2>
+        </div>
+
+        <div class="divide-y divide-wine/10 border-y border-wine/10">
+          <details class="group py-5">
+            <summary class="flex justify-between items-center cursor-pointer list-none font-display text-lg text-wine">
+              <span>Preciso saber Excel para usar?</span>
+              <span class="text-gold transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-ink/75">Não. O Psi Planner já vem montado: você navega pelos botões do Menu e digita os dados nos campos indicados. Saber o básico de Excel ajuda, mas não é exigido.</p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex justify-between items-center cursor-pointer list-none font-display text-lg text-wine">
+              <span>Funciona no Mac?</span>
+              <span class="text-gold transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-ink/75">Sim, funciona no Excel para Mac. Algumas macros podem ter pequenas diferenças de comportamento em relação ao Windows. Não recomendamos o uso pelo Google Sheets nem pelo celular.</p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex justify-between items-center cursor-pointer list-none font-display text-lg text-wine">
+              <span>É assinatura ou pagamento único?</span>
+              <span class="text-gold transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-ink/75">Pagamento único de R$ 97. Sem mensalidade e sem cobrança recorrente — o arquivo é seu.</p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex justify-between items-center cursor-pointer list-none font-display text-lg text-wine">
+              <span>Como recebo o arquivo?</span>
+              <span class="text-gold transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-ink/75">Após a confirmação do pagamento na Kiwify, você recebe o acesso por e-mail para baixar a planilha (.xlsm) imediatamente.</p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex justify-between items-center cursor-pointer list-none font-display text-lg text-wine">
+              <span>Recebo atualizações?</span>
+              <span class="text-gold transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-ink/75"><span class="review-flag">Confirmar política de atualização</span> A versão adquirida é sua para sempre. Eventuais melhorias podem ser disponibilizadas pelo mesmo canal de acesso da Kiwify.</p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex justify-between items-center cursor-pointer list-none font-display text-lg text-wine">
+              <span>E se eu não gostar?</span>
+              <span class="text-gold transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-ink/75">Você tem 7 dias de garantia incondicional. Se não for para você, basta solicitar o reembolso dentro do prazo e devolvemos 100% do valor.</p>
+          </details>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="{{LINK_KIWIFY}}" data-cta="faq" class="btn-gold">Quero o Psi Planner · R$ 97</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="bg-wine-dark text-ondark/80">
+    <div class="wrap py-14">
+      <div class="grid md:grid-cols-3 gap-10">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="assets/logo-monograma.webp" width="36" height="36" alt="" class="h-9 w-9" />
+            <span class="font-display text-offwhite text-lg tracking-[0.18em]">PSI&nbsp;PLANNER</span>
+          </div>
+          <p class="text-sm text-ondark/65 max-w-xs">Seu consultório organizado. Sua mente tranquila.</p>
+        </div>
+
+        <div class="text-sm">
+          <h3 class="font-display text-offwhite text-base mb-4">Atendimento</h3>
+          <ul class="space-y-2">
+            <li>E-mail: <a href="mailto:{{EMAIL_SUPORTE}}" class="text-goldsoft hover:underline">{{EMAIL_SUPORTE}}</a></li>
+            <li>WhatsApp: <a href="https://wa.me/{{WHATSAPP}}" class="text-goldsoft hover:underline">{{WHATSAPP}}</a></li>
+          </ul>
+        </div>
+
+        <div class="text-sm">
+          <h3 class="font-display text-offwhite text-base mb-4">Institucional</h3>
+          <ul class="space-y-2">
+            <li><a href="politica-de-privacidade.html" class="hover:text-goldsoft hover:underline">Política de Privacidade</a></li>
+            <li><a href="termos-de-uso.html" class="hover:text-goldsoft hover:underline">Termos de Uso</a></li>
+            <li><a href="politica-de-reembolso.html" class="hover:text-goldsoft hover:underline">Política de Reembolso</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-ondark/15 text-xs text-ondark/55 space-y-2">
+        <p>{{NOME_VENDEDOR}} · CPF/CNPJ: {{CPF_CNPJ}} · {{CIDADE_UF}}</p>
+        <p>© <span id="ano">2026</span> Psi Planner. Todos os direitos reservados. Microsoft Excel é marca registrada da Microsoft Corporation; este produto não é afiliado à Microsoft.</p>
+        <p class="text-ondark/60">Este produto é uma ferramenta de organização e não substitui orientação contábil profissional.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== CTA STICKY MOBILE ===================== -->
+  <div class="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-offwhite/95 backdrop-blur border-t border-wine/15 px-4 py-3">
+    <a href="{{LINK_KIWIFY}}" data-cta="sticky-mobile" class="btn-gold w-full !py-3.5">Quero o Psi Planner · R$ 97</a>
+  </div>
+
+  <!-- ===================== COOKIE BANNER (LGPD) ===================== -->
+  <div id="cookie-banner" class="hidden fixed bottom-0 inset-x-0 z-50 bg-wine-dark text-ondark px-5 py-4 shadow-soft" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+    <div class="wrap flex flex-col sm:flex-row items-center gap-4 justify-between">
+      <p class="text-sm text-ondark/85">Usamos cookies para medir o desempenho do site e melhorar sua experiência. Ao continuar, você concorda com nossa <a href="politica-de-privacidade.html" class="text-goldsoft underline">Política de Privacidade</a>.</p>
+      <div class="flex gap-3 shrink-0">
+        <button type="button" id="cookie-reject" class="btn-ghost !text-ondark !border-ondark/40 hover:!bg-ondark/10 !py-2 !px-4 text-sm">Recusar</button>
+        <button type="button" id="cookie-accept" class="btn-gold !py-2 !px-5 text-sm">Aceitar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

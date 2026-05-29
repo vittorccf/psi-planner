@@ -1,0 +1,2593 @@
+{
+  "meta": {
+    "title": "Psi Planner 2 - Especificacao Visual Premium",
+    "description": "Spec consumivel por openpyxl. Luxo minimalista. Fontes premium substituidas por fallbacks instalados.",
+    "palette": {
+      "preto": "000000",
+      "ink": "000000",
+      "mute": "3B3B3B",
+      "line": "E2E2E2",
+      "cinza_claro": "F4F4F4",
+      "surface_deep": "EAEAEA",
+      "cinza_medio": "A6A6A6",
+      "cinza_escuro": "3B3B3B",
+      "vinho_elegante": "5A1E2A",
+      "vinho_escuro": "3A1018",
+      "branco": "FFFFFF",
+      "done": "ECECEC",
+      "wait": "EFE2E5",
+      "alert": "E7D2D7"
+    },
+    "fill_argb_prefix": "FF",
+    "sheet_order": [
+      "Menu Inicial",
+      "Financeiro",
+      "Pacientes",
+      "Calendário",
+      "Aniversariantes",
+      "Relatórios",
+      "Configurações"
+    ]
+  },
+  "fonts": {
+    "titulo_clinica": {
+      "intended": "Golsuka",
+      "applied": "Playfair Display",
+      "size": 26,
+      "bold": false,
+      "italic": false
+    },
+    "titulo_aba": {
+      "intended": "Golsuka",
+      "applied": "Playfair Display",
+      "size": 18,
+      "bold": false,
+      "italic": false
+    },
+    "subtitulo": {
+      "intended": "Poppins Light",
+      "applied": "Poppins Light",
+      "size": 12,
+      "bold": false,
+      "italic": false
+    },
+    "institucional": {
+      "intended": "Playfair Display Italic",
+      "applied": "Playfair Display",
+      "size": 13,
+      "bold": false,
+      "italic": true
+    },
+    "cabecalho_tabela": {
+      "intended": "Poppins Light",
+      "applied": "Poppins Light",
+      "size": 10,
+      "bold": false,
+      "italic": false
+    },
+    "kpi_label": {
+      "intended": "Poppins Light",
+      "applied": "Poppins Light",
+      "size": 9,
+      "bold": false,
+      "italic": false
+    },
+    "kpi_valor": {
+      "intended": "Poppins",
+      "applied": "Poppins",
+      "size": 18,
+      "bold": false,
+      "italic": false
+    },
+    "kpi_valor_pequeno": {
+      "intended": "Poppins",
+      "applied": "Poppins",
+      "size": 15,
+      "bold": false,
+      "italic": false
+    },
+    "conteudo": {
+      "intended": "Poppins Light",
+      "applied": "Poppins Light",
+      "size": 9,
+      "bold": false,
+      "italic": false
+    },
+    "conteudo_pequeno": {
+      "intended": "Poppins Light",
+      "applied": "Poppins Light",
+      "size": 8,
+      "bold": false,
+      "italic": false
+    },
+    "botao": {
+      "intended": "Poppins Light",
+      "applied": "Poppins Light",
+      "size": 12,
+      "bold": false,
+      "italic": false
+    },
+    "card_titulo": {
+      "intended": "Poppins Light",
+      "applied": "Poppins Light",
+      "size": 11,
+      "bold": false,
+      "italic": false
+    },
+    "data_auto": {
+      "intended": "Poppins Light",
+      "applied": "Poppins Light",
+      "size": 11,
+      "bold": false,
+      "italic": false
+    },
+    "aviso_titulo": {
+      "intended": "Golsuka",
+      "applied": "Playfair Display",
+      "size": 12,
+      "bold": false,
+      "italic": false
+    },
+    "aviso_texto": {
+      "intended": "Dream Avenue",
+      "applied": "Segoe UI Light",
+      "size": 9,
+      "bold": false,
+      "italic": false
+    }
+  },
+  "sheets": {
+    "Menu Inicial": {
+      "column_widths": {
+        "A": 3,
+        "B": 22,
+        "C": 22,
+        "D": 22,
+        "E": 4,
+        "F": 22,
+        "G": 22,
+        "H": 22,
+        "I": 4,
+        "J": 26,
+        "K": 26,
+        "L": 3
+      },
+      "row_heights": {
+        "1": 18,
+        "2": 44,
+        "3": 24,
+        "4": 14,
+        "5": 20,
+        "6": 60,
+        "7": 60,
+        "8": 22,
+        "9": 14,
+        "10": 22,
+        "11": 54,
+        "12": 12,
+        "13": 54,
+        "14": 12,
+        "15": 22,
+        "16": 22,
+        "17": 22,
+        "18": 22,
+        "19": 22,
+        "20": 22
+      },
+      "cells": [
+        {
+          "ref": "B2",
+          "value": "Clínica Vita",
+          "font": "titulo_clinica",
+          "fill": null,
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B3",
+          "value": "Cuidado em saúde mental com presença e excelência",
+          "font": "institucional",
+          "fill": null,
+          "font_color": "A6A6A6",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J2",
+          "value": "=TODAY()",
+          "font": "data_auto",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "right",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B6",
+          "value": "Total de pacientes ativos",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false,
+          "named_range": "KPI_PacientesAtivos"
+        },
+        {
+          "ref": "C6",
+          "value": "Receita do mês",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false,
+          "named_range": "KPI_ReceitaMes"
+        },
+        {
+          "ref": "D6",
+          "value": "Valor pendente",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false,
+          "named_range": "KPI_ValorPendente"
+        },
+        {
+          "ref": "F6",
+          "value": "Próxima consulta",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false,
+          "named_range": "KPI_ProximaConsulta"
+        },
+        {
+          "ref": "G6",
+          "value": "Faltas do mês",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false,
+          "named_range": "KPI_FaltasMes"
+        },
+        {
+          "ref": "H6",
+          "value": "Aniversariantes do mês",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false,
+          "named_range": "KPI_AniversariantesMes"
+        },
+        {
+          "ref": "B7",
+          "value": "0",
+          "font": "kpi_valor",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C7",
+          "value": "R$ 0,00",
+          "font": "kpi_valor",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "D7",
+          "value": "R$ 0,00",
+          "font": "kpi_valor",
+          "fill": "cinza_claro",
+          "font_color": "5A1E2A",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F7",
+          "value": "—",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "G7",
+          "value": "0",
+          "font": "kpi_valor",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "H7",
+          "value": "0",
+          "font": "kpi_valor",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B10",
+          "value": "ACESSO RÁPIDO",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J5",
+          "value": "AVISOS",
+          "font": "aviso_titulo",
+          "fill": null,
+          "font_color": "5A1E2A",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J6",
+          "value": "Acompanhe aqui lembretes e pendências do dia.",
+          "font": "aviso_texto",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false,
+          "named_range": "AVISO_1"
+        },
+        {
+          "ref": "J7",
+          "value": "",
+          "font": "aviso_texto",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false,
+          "named_range": "AVISO_2"
+        },
+        {
+          "ref": "J15",
+          "value": "",
+          "font": "aviso_texto",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "top",
+          "bold": false,
+          "named_range": "AVISO_3"
+        }
+      ],
+      "merges": [
+        "B2:E2",
+        "B3:E3",
+        "J2:K2",
+        "B6:B6",
+        "C6:C6",
+        "D6:D6",
+        "F6:F6",
+        "G6:G6",
+        "H6:H6",
+        "J5:K5",
+        "J6:K6",
+        "J7:K14",
+        "J15:K20"
+      ],
+      "borders": [
+        {
+          "range": "B4:H4",
+          "edge": "bottom",
+          "color": "A6A6A6",
+          "style": "thin"
+        },
+        {
+          "range": "B6:B7",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "C6:C7",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "D6:D7",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "F6:F7",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "G6:G7",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "H6:H7",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "J5:K14",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        }
+      ],
+      "conditional_formatting": [],
+      "charts": [],
+      "nav_buttons": [
+        {
+          "label": "Financeiro",
+          "target_sheet": "Financeiro",
+          "on_action": "IrParaFinanceiro",
+          "cell_anchor": "B11",
+          "width_px": 150,
+          "height_px": 56
+        },
+        {
+          "label": "Pacientes",
+          "target_sheet": "Pacientes",
+          "on_action": "IrParaPacientes",
+          "cell_anchor": "C11",
+          "width_px": 150,
+          "height_px": 56
+        },
+        {
+          "label": "Calendário",
+          "target_sheet": "Calendário",
+          "on_action": "IrParaCalendario",
+          "cell_anchor": "D11",
+          "width_px": 150,
+          "height_px": 56
+        },
+        {
+          "label": "Aniversariantes",
+          "target_sheet": "Aniversariantes",
+          "on_action": "IrParaAniversariantes",
+          "cell_anchor": "B13",
+          "width_px": 150,
+          "height_px": 56
+        },
+        {
+          "label": "Relatórios",
+          "target_sheet": "Relatórios",
+          "on_action": "IrParaRelatorios",
+          "cell_anchor": "C13",
+          "width_px": 150,
+          "height_px": 56
+        },
+        {
+          "label": "Configurações",
+          "target_sheet": "Configurações",
+          "on_action": "IrParaConfiguracoes",
+          "cell_anchor": "D13",
+          "width_px": 150,
+          "height_px": 56
+        }
+      ]
+    },
+    "Financeiro": {
+      "column_widths": {
+        "A": 3,
+        "B": 13,
+        "C": 26,
+        "D": 16,
+        "E": 16,
+        "F": 14,
+        "G": 14,
+        "H": 13,
+        "I": 14,
+        "J": 27,
+        "K": 3,
+        "L": 24,
+        "M": 18
+      },
+      "row_heights": {
+        "1": 18,
+        "2": 40,
+        "3": 14,
+        "4": 22,
+        "5": 14,
+        "6": 24,
+        "57": 14,
+        "58": 22,
+        "59": 14,
+        "60": 24,
+        "75": 14,
+        "76": 22,
+        "77": 14,
+        "78": 24
+      },
+      "cells": [
+        {
+          "ref": "B2",
+          "value": "Financeiro",
+          "font": "titulo_aba",
+          "fill": null,
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B3",
+          "value": "Lançamentos, recebimentos e indicadores",
+          "font": "institucional",
+          "fill": null,
+          "font_color": "A6A6A6",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B4",
+          "value": "LANÇAMENTOS",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B6",
+          "value": "Data",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C6",
+          "value": "Paciente",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "D6",
+          "value": "Tipo",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "E6",
+          "value": "Forma Pgto",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F6",
+          "value": "Valor",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "right",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "G6",
+          "value": "Status",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "H6",
+          "value": "NF",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "I6",
+          "value": "Nº NF",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J6",
+          "value": "Observações",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "L4",
+          "value": "INDICADORES",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "L6",
+          "value": "Total recebido",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "M6",
+          "value": "R$ 0,00",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "FIN_TotalRecebido"
+        },
+        {
+          "ref": "L7",
+          "value": "Total pendente",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "M7",
+          "value": "R$ 0,00",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "5A1E2A",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "FIN_TotalPendente"
+        },
+        {
+          "ref": "L8",
+          "value": "Lucro líquido",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "M8",
+          "value": "R$ 0,00",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "FIN_LucroLiquido"
+        },
+        {
+          "ref": "L9",
+          "value": "% inadimplência",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "M9",
+          "value": "0%",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "FIN_Inadimplencia"
+        },
+        {
+          "ref": "L10",
+          "value": "Indicador MEI",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "M10",
+          "value": "Dentro do limite",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "MEI_Indicador"
+        },
+        {
+          "ref": "B58",
+          "value": "DESPESAS",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B60",
+          "value": "Data",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C60",
+          "value": "Categoria",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "D60",
+          "value": "Descrição",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "E60",
+          "value": "Valor",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "right",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F60",
+          "value": "Forma",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B76",
+          "value": "GRÁFICOS",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        }
+      ],
+      "merges": [
+        "B2:F2",
+        "B3:F3",
+        "L4:M4"
+      ],
+      "borders": [
+        {
+          "range": "B6:J6",
+          "edge": "bottom",
+          "color": "A6A6A6",
+          "style": "thin"
+        },
+        {
+          "range": "B6:J56",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "L6:M10",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "B60:F60",
+          "edge": "bottom",
+          "color": "A6A6A6",
+          "style": "thin"
+        },
+        {
+          "range": "B60:F74",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        }
+      ],
+      "conditional_formatting": [
+        {
+          "range": "G7:G56",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Pago",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF"
+        },
+        {
+          "range": "G7:G56",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Pendente",
+          "fill": "cinza_medio",
+          "font_color": "3B3B3B"
+        },
+        {
+          "range": "G7:G56",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Cancelado",
+          "fill": "preto",
+          "font_color": "FFFFFF"
+        }
+      ],
+      "charts": [
+        {
+          "type": "line",
+          "title": "Receita mensal",
+          "anchor": "B78",
+          "data_range": "Financeiro!$M$80:$M$91",
+          "cats_range": "Financeiro!$L$80:$L$91",
+          "series_colors": [
+            "A6A6A6"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        },
+        {
+          "type": "barHorizontal",
+          "title": "Receita x Despesa",
+          "anchor": "F78",
+          "data_range": "Financeiro!$M$95:$N$95",
+          "cats_range": "Financeiro!$L$95:$L$96",
+          "series_colors": [
+            "A6A6A6",
+            "5A1E2A"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        },
+        {
+          "type": "doughnut",
+          "title": "Pago x Pendente",
+          "anchor": "J78",
+          "data_range": "Financeiro!$M$100:$M$101",
+          "cats_range": "Financeiro!$L$100:$L$101",
+          "series_colors": [
+            "5A1E2A",
+            "A6A6A6"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        },
+        {
+          "type": "line",
+          "title": "Evolução acumulada",
+          "anchor": "B96",
+          "data_range": "Financeiro!$M$105:$M$116",
+          "cats_range": "Financeiro!$L$105:$L$116",
+          "series_colors": [
+            "A6A6A6"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        },
+        {
+          "type": "doughnut",
+          "title": "Distribuição por forma de pagamento",
+          "anchor": "F96",
+          "data_range": "Financeiro!$M$120:$M$124",
+          "cats_range": "Financeiro!$L$120:$L$124",
+          "series_colors": [
+            "3B3B3B",
+            "A6A6A6",
+            "5A1E2A",
+            "F4F4F4",
+            "000000"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        }
+      ],
+      "nav_buttons": [
+        {
+          "label": "Voltar ao Menu",
+          "target_sheet": "Menu Inicial",
+          "on_action": "IrParaMenu",
+          "cell_anchor": "B1",
+          "width_px": 130,
+          "height_px": 28
+        }
+      ]
+    },
+    "Pacientes": {
+      "column_widths": {
+        "A": 3,
+        "B": 26,
+        "C": 16,
+        "D": 14,
+        "E": 13,
+        "F": 7,
+        "G": 16,
+        "H": 26,
+        "I": 30,
+        "J": 18,
+        "K": 16,
+        "L": 13,
+        "M": 14,
+        "N": 14,
+        "O": 14,
+        "P": 16,
+        "Q": 13,
+        "R": 10,
+        "S": 14,
+        "T": 16
+      },
+      "row_heights": {
+        "1": 18,
+        "2": 40,
+        "3": 14,
+        "4": 14,
+        "5": 14,
+        "6": 26
+      },
+      "cells": [
+        {
+          "ref": "B2",
+          "value": "Pacientes",
+          "font": "titulo_aba",
+          "fill": null,
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B3",
+          "value": "Cadastro e acompanhamento clínico",
+          "font": "institucional",
+          "fill": null,
+          "font_color": "A6A6A6",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B6",
+          "value": "Nome",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C6",
+          "value": "CPF",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "D6",
+          "value": "RG",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "E6",
+          "value": "Nascimento",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F6",
+          "value": "Idade",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "G6",
+          "value": "Telefone",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "H6",
+          "value": "Email",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "I6",
+          "value": "Endereço",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J6",
+          "value": "Convênio",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "K6",
+          "value": "Profissão",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "L6",
+          "value": "Início",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "M6",
+          "value": "Frequência",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "N6",
+          "value": "Valor sessão",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "right",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "O6",
+          "value": "Status",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "P6",
+          "value": "Contratadas",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "Q6",
+          "value": "Realizadas",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "R6",
+          "value": "Saldo",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "S6",
+          "value": "Última sessão",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "T6",
+          "value": "Total faturado",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "right",
+          "valign": "center",
+          "bold": false
+        }
+      ],
+      "merges": [
+        "B2:F2",
+        "B3:F3"
+      ],
+      "borders": [
+        {
+          "range": "B6:T6",
+          "edge": "bottom",
+          "color": "A6A6A6",
+          "style": "thin"
+        },
+        {
+          "range": "B6:T56",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        }
+      ],
+      "conditional_formatting": [
+        {
+          "range": "O7:O56",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Ativo",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF"
+        },
+        {
+          "range": "O7:O56",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Inativo",
+          "fill": "cinza_medio",
+          "font_color": "3B3B3B"
+        },
+        {
+          "range": "O7:O56",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Alta",
+          "fill": "vinho_elegante",
+          "font_color": "FFFFFF"
+        }
+      ],
+      "charts": [],
+      "nav_buttons": [
+        {
+          "label": "Voltar ao Menu",
+          "target_sheet": "Menu Inicial",
+          "on_action": "IrParaMenu",
+          "cell_anchor": "B1",
+          "width_px": 130,
+          "height_px": 28
+        }
+      ]
+    },
+    "Calendário": {
+      "column_widths": {
+        "A": 3,
+        "B": 9,
+        "C": 20,
+        "D": 20,
+        "E": 20,
+        "F": 20,
+        "G": 20,
+        "H": 20,
+        "I": 4,
+        "J": 26,
+        "K": 16
+      },
+      "row_heights": {
+        "1": 18,
+        "2": 40,
+        "3": 14,
+        "4": 14,
+        "5": 24,
+        "6": 22,
+        "7": 22,
+        "8": 22,
+        "9": 22,
+        "10": 22,
+        "11": 22,
+        "12": 22,
+        "13": 22,
+        "14": 22,
+        "15": 22,
+        "16": 22,
+        "17": 22,
+        "18": 22,
+        "19": 22,
+        "20": 22,
+        "21": 22
+      },
+      "cells": [
+        {
+          "ref": "B2",
+          "value": "Calendário",
+          "font": "titulo_aba",
+          "fill": null,
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B3",
+          "value": "Agenda semanal de atendimentos",
+          "font": "institucional",
+          "fill": null,
+          "font_color": "A6A6A6",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B5",
+          "value": "Hora",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C5",
+          "value": "Segunda",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "D5",
+          "value": "Terça",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "E5",
+          "value": "Quarta",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F5",
+          "value": "Quinta",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "G5",
+          "value": "Sexta",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "H5",
+          "value": "Sábado",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B6",
+          "value": "07h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B7",
+          "value": "08h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B8",
+          "value": "09h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B9",
+          "value": "10h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B10",
+          "value": "11h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B11",
+          "value": "12h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B12",
+          "value": "13h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B13",
+          "value": "14h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B14",
+          "value": "15h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B15",
+          "value": "16h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B16",
+          "value": "17h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B17",
+          "value": "18h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B18",
+          "value": "19h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B19",
+          "value": "20h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B20",
+          "value": "21h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B21",
+          "value": "22h",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J4",
+          "value": "RESUMO DO DIA",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J5",
+          "value": "Consultas do dia",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "K5",
+          "value": "0",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CAL_ConsultasDia"
+        },
+        {
+          "ref": "J6",
+          "value": "Taxa de cancelamento",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "K6",
+          "value": "0%",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CAL_TaxaCancelamento"
+        },
+        {
+          "ref": "J7",
+          "value": "Taxa de faltas",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "K7",
+          "value": "0%",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CAL_TaxaFaltas"
+        },
+        {
+          "ref": "J10",
+          "value": "LISTA DE ESPERA",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J11",
+          "value": "Nome",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "K11",
+          "value": "Telefone",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        }
+      ],
+      "merges": [
+        "B2:F2",
+        "B3:F3",
+        "J4:K4",
+        "J10:K10"
+      ],
+      "borders": [
+        {
+          "range": "B5:H5",
+          "edge": "all",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "B6:H21",
+          "edge": "all",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "J5:K7",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "J11:K20",
+          "edge": "all",
+          "color": "A6A6A6",
+          "style": "hair"
+        }
+      ],
+      "conditional_formatting": [
+        {
+          "range": "C6:H21",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Cancelado",
+          "fill": "preto",
+          "font_color": "FFFFFF"
+        },
+        {
+          "range": "C6:H21",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Faltou",
+          "fill": "preto",
+          "font_color": "FFFFFF"
+        },
+        {
+          "range": "C6:H21",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Confirmado",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF"
+        }
+      ],
+      "charts": [],
+      "nav_buttons": [
+        {
+          "label": "Adicionar",
+          "target_sheet": "Calendário",
+          "on_action": "AdicionarConsulta",
+          "cell_anchor": "C23",
+          "width_px": 130,
+          "height_px": 32
+        },
+        {
+          "label": "Remarcar",
+          "target_sheet": "Calendário",
+          "on_action": "RemarcarConsulta",
+          "cell_anchor": "E23",
+          "width_px": 130,
+          "height_px": 32
+        },
+        {
+          "label": "Finalizar",
+          "target_sheet": "Calendário",
+          "on_action": "FinalizarConsulta",
+          "cell_anchor": "G23",
+          "width_px": 130,
+          "height_px": 32
+        },
+        {
+          "label": "Voltar ao Menu",
+          "target_sheet": "Menu Inicial",
+          "on_action": "IrParaMenu",
+          "cell_anchor": "B1",
+          "width_px": 130,
+          "height_px": 28
+        }
+      ]
+    },
+    "Aniversariantes": {
+      "column_widths": {
+        "A": 3,
+        "B": 28,
+        "C": 16,
+        "D": 8,
+        "E": 16,
+        "F": 18,
+        "G": 16,
+        "H": 20,
+        "I": 4,
+        "J": 26,
+        "K": 16
+      },
+      "row_heights": {
+        "1": 18,
+        "2": 40,
+        "3": 14,
+        "4": 22,
+        "5": 14,
+        "6": 24
+      },
+      "cells": [
+        {
+          "ref": "B2",
+          "value": "Aniversariantes",
+          "font": "titulo_aba",
+          "fill": null,
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B3",
+          "value": "Relacionamento e cuidado com cada paciente",
+          "font": "institucional",
+          "fill": null,
+          "font_color": "A6A6A6",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B6",
+          "value": "Nome",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C6",
+          "value": "Nascimento",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "D6",
+          "value": "Idade",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "E6",
+          "value": "Aniversário",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F6",
+          "value": "Telefone",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "G6",
+          "value": "Status",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "H6",
+          "value": "Mensagem enviada?",
+          "font": "cabecalho_tabela",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "center",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J4",
+          "value": "DO MÊS",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "J5",
+          "value": "Aniversariantes do mês",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "K5",
+          "value": "0",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "5A1E2A",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "ANIV_TotalMes"
+        }
+      ],
+      "merges": [
+        "B2:F2",
+        "B3:F3",
+        "J4:K4"
+      ],
+      "borders": [
+        {
+          "range": "B6:H6",
+          "edge": "bottom",
+          "color": "A6A6A6",
+          "style": "thin"
+        },
+        {
+          "range": "B6:H56",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "J5:K5",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        }
+      ],
+      "conditional_formatting": [
+        {
+          "range": "B7:H56",
+          "type": "expression",
+          "formula": "AND($C7<>\"\",TEXT($C7,\"mm-dd\")>=TEXT(TODAY(),\"mm-dd\"),TEXT($C7,\"mm-dd\")<=TEXT(TODAY()+7,\"mm-dd\"))",
+          "fill": "vinho_elegante",
+          "font_color": "FFFFFF"
+        },
+        {
+          "range": "H7:H56",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Sim",
+          "fill": "cinza_escuro",
+          "font_color": "FFFFFF"
+        },
+        {
+          "range": "H7:H56",
+          "type": "containsText",
+          "operator": "containsText",
+          "text": "Não",
+          "fill": "cinza_medio",
+          "font_color": "3B3B3B"
+        }
+      ],
+      "charts": [
+        {
+          "type": "doughnut",
+          "title": "Aniversariantes por mês",
+          "anchor": "J8",
+          "data_range": "Aniversariantes!$K$60:$K$71",
+          "cats_range": "Aniversariantes!$J$60:$J$71",
+          "series_colors": [
+            "F4F4F4",
+            "A6A6A6",
+            "3B3B3B",
+            "5A1E2A",
+            "F4F4F4",
+            "A6A6A6",
+            "3B3B3B",
+            "5A1E2A",
+            "F4F4F4",
+            "A6A6A6",
+            "3B3B3B",
+            "5A1E2A"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        }
+      ],
+      "nav_buttons": [
+        {
+          "label": "Voltar ao Menu",
+          "target_sheet": "Menu Inicial",
+          "on_action": "IrParaMenu",
+          "cell_anchor": "B1",
+          "width_px": 130,
+          "height_px": 28
+        }
+      ]
+    },
+    "Relatórios": {
+      "column_widths": {
+        "A": 3,
+        "B": 26,
+        "C": 18,
+        "D": 4,
+        "E": 26,
+        "F": 18,
+        "G": 4,
+        "H": 26,
+        "I": 18,
+        "J": 3
+      },
+      "row_heights": {
+        "1": 18,
+        "2": 40,
+        "3": 14,
+        "4": 14,
+        "5": 22,
+        "6": 24,
+        "7": 24,
+        "8": 24,
+        "9": 24,
+        "10": 24,
+        "11": 24,
+        "12": 24,
+        "13": 24
+      },
+      "cells": [
+        {
+          "ref": "B2",
+          "value": "Relatórios",
+          "font": "titulo_aba",
+          "fill": null,
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B3",
+          "value": "Visão consolidada da clínica",
+          "font": "institucional",
+          "fill": null,
+          "font_color": "A6A6A6",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B5",
+          "value": "INDICADORES",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B6",
+          "value": "Receita mensal",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C6",
+          "value": "R$ 0,00",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "REL_ReceitaMensal"
+        },
+        {
+          "ref": "B7",
+          "value": "Receita anual",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C7",
+          "value": "R$ 0,00",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "REL_ReceitaAnual"
+        },
+        {
+          "ref": "B8",
+          "value": "Sessões registradas",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C8",
+          "value": "0",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "REL_Atendimentos"
+        },
+        {
+          "ref": "E6",
+          "value": "Pacientes ativos",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F6",
+          "value": "0",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "REL_Ativos"
+        },
+        {
+          "ref": "E7",
+          "value": "Taxa de cancelamento",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F7",
+          "value": "0%",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "REL_TaxaCancelamento"
+        },
+        {
+          "ref": "E8",
+          "value": "Taxa de inadimplência",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "F8",
+          "value": "0%",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "5A1E2A",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "REL_TaxaInadimplencia"
+        },
+        {
+          "ref": "H6",
+          "value": "Receita por convênio",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "I6",
+          "value": "R$ 0,00",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "REL_ReceitaConvenio"
+        },
+        {
+          "ref": "H7",
+          "value": "Crescimento vs. mês ant.",
+          "font": "kpi_label",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "I7",
+          "value": "0%",
+          "font": "kpi_valor_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "REL_ComparativoMeses"
+        },
+        {
+          "ref": "B14",
+          "value": "GRÁFICOS",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        }
+      ],
+      "merges": [
+        "B2:F2",
+        "B3:F3"
+      ],
+      "borders": [
+        {
+          "range": "B6:C8",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "E6:F8",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "H6:I7",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        }
+      ],
+      "conditional_formatting": [],
+      "charts": [
+        {
+          "type": "line",
+          "title": "Evolução da receita",
+          "anchor": "B16",
+          "data_range": "Relatórios!$C$40:$C$51",
+          "cats_range": "Relatórios!$B$40:$B$51",
+          "series_colors": [
+            "A6A6A6"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        },
+        {
+          "type": "barHorizontal",
+          "title": "Comparativo entre meses",
+          "anchor": "E16",
+          "data_range": "Relatórios!$C$55:$C$60",
+          "cats_range": "Relatórios!$B$55:$B$60",
+          "series_colors": [
+            "A6A6A6"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        },
+        {
+          "type": "doughnut",
+          "title": "Receita por convênio",
+          "anchor": "H16",
+          "data_range": "Relatórios!$C$64:$C$68",
+          "cats_range": "Relatórios!$B$64:$B$68",
+          "series_colors": [
+            "3B3B3B",
+            "A6A6A6",
+            "5A1E2A",
+            "F4F4F4",
+            "000000"
+          ],
+          "highlight_color": "5A1E2A",
+          "monochrome": true
+        }
+      ],
+      "nav_buttons": [
+        {
+          "label": "Exportar PDF",
+          "target_sheet": "Relatórios",
+          "on_action": "ExportarRelatorioPDF",
+          "cell_anchor": "H4",
+          "width_px": 150,
+          "height_px": 32
+        },
+        {
+          "label": "Voltar ao Menu",
+          "target_sheet": "Menu Inicial",
+          "on_action": "IrParaMenu",
+          "cell_anchor": "B1",
+          "width_px": 130,
+          "height_px": 28
+        }
+      ]
+    },
+    "Configurações": {
+      "column_widths": {
+        "A": 3,
+        "B": 28,
+        "C": 32,
+        "D": 3
+      },
+      "row_heights": {
+        "1": 18,
+        "2": 40,
+        "3": 14,
+        "4": 14,
+        "5": 22,
+        "6": 24,
+        "7": 24,
+        "8": 24,
+        "9": 24,
+        "10": 24,
+        "11": 22,
+        "12": 24,
+        "13": 24,
+        "14": 24,
+        "15": 48
+      },
+      "cells": [
+        {
+          "ref": "B2",
+          "value": "Configurações",
+          "font": "titulo_aba",
+          "fill": null,
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B3",
+          "value": "Preferências e dados do profissional",
+          "font": "institucional",
+          "fill": null,
+          "font_color": "A6A6A6",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B5",
+          "value": "DADOS DA CLÍNICA",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B6",
+          "value": "Nome da clínica",
+          "font": "kpi_label",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C6",
+          "value": "Clínica Vita",
+          "font": "conteudo",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CFG_NomeClinica"
+        },
+        {
+          "ref": "B7",
+          "value": "Profissional responsável",
+          "font": "kpi_label",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C7",
+          "value": "",
+          "font": "conteudo",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CFG_Profissional"
+        },
+        {
+          "ref": "B8",
+          "value": "Registro profissional",
+          "font": "kpi_label",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C8",
+          "value": "",
+          "font": "conteudo",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CFG_Registro"
+        },
+        {
+          "ref": "B9",
+          "value": "Telefone de contato",
+          "font": "kpi_label",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C9",
+          "value": "",
+          "font": "conteudo",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CFG_Telefone"
+        },
+        {
+          "ref": "B10",
+          "value": "Email",
+          "font": "kpi_label",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C10",
+          "value": "",
+          "font": "conteudo",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "left",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CFG_Email"
+        },
+        {
+          "ref": "B12",
+          "value": "PARÂMETROS",
+          "font": "subtitulo",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "B13",
+          "value": "Limite MEI (anual)",
+          "font": "kpi_label",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C13",
+          "value": 81000,
+          "font": "conteudo",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CFG_LimiteMEI"
+        },
+        {
+          "ref": "B14",
+          "value": "Valor padrão da sessão",
+          "font": "kpi_label",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false
+        },
+        {
+          "ref": "C14",
+          "value": 180,
+          "font": "conteudo",
+          "fill": "cinza_claro",
+          "font_color": "000000",
+          "align": "right",
+          "valign": "center",
+          "bold": false,
+          "named_range": "CFG_ValorSessao"
+        },
+        {
+          "ref": "B15",
+          "value": "Categorias de despesa",
+          "font": "kpi_label",
+          "fill": null,
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "top",
+          "bold": false
+        },
+        {
+          "ref": "C15",
+          "value": "Aluguel · Supervisão · Marketing · Plataforma online · Materiais · Internet · Outros",
+          "font": "conteudo_pequeno",
+          "fill": "cinza_claro",
+          "font_color": "3B3B3B",
+          "align": "left",
+          "valign": "center",
+          "bold": false,
+          "wrap": true
+        }
+      ],
+      "merges": [
+        "B2:C2",
+        "B3:C3"
+      ],
+      "borders": [
+        {
+          "range": "C6:C10",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        },
+        {
+          "range": "C13:C13",
+          "edge": "outline",
+          "color": "A6A6A6",
+          "style": "hair"
+        }
+      ],
+      "conditional_formatting": [],
+      "charts": [],
+      "nav_buttons": [
+        {
+          "label": "Voltar ao Menu",
+          "target_sheet": "Menu Inicial",
+          "on_action": "IrParaMenu",
+          "cell_anchor": "B1",
+          "width_px": 130,
+          "height_px": 28
+        }
+      ]
+    }
+  }
+}

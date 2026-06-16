@@ -248,7 +248,7 @@ HTML = f"""<!DOCTYPE html>
         <div><span>Data</span><b>27 de maio de 2026</b></div>
       </div>
     </div>
-    <div class="foot">Saluti · Projeto Psi Planner</div>
+    <div class="foot">Salutti · Projeto Psi Planner</div>
   </section>
 
   <!-- ===================== VISAO GERAL ===================== -->
